@@ -93,13 +93,57 @@ read
 
 # -----------------------------------------------------------------------------------------
 
-# Install of VPN
+# Installation of VPN
+clear
+echo -e "Now we will install the VPN."
+
+echo "Which VPN do you want to install? (enter the number): "
+options=("ProtonVPN" "Mullvad")
+
+select firewall_choice in "${options[@]}"; do
+    case $firewall_choice in
+        "ProtonVPN")
+			vpn_name="ProtonVPN"
+			sudo hdiutil attach vpn.dmg
+			rsync -a "/Volumes/ProtonVPN/ProtonVPN.app" "/Applications/"
+			sleep 5
+			sudo hdiutil detach "/Volumes/ProtonVPN/"
+			sleep 3
+            break
+            ;;
+        "Mullvad")
+			vpn_name="Mullvad VPN"
+			sudo installer -package vpn.pkg -target /
+            break
+            ;;
+        *)
+            echo "Invalid option, please choose 1 or 2."
+            ;;
+    esac
+done
+
+clear
+echo -e "${GREEN}The VPN was successfully installed.${NC}"
+echo -e "\nPlease make sure to ${BOLD}turn the Killswitch on${NC}, then we will continue with the network connectivity. \n${RED}If you get prompted by $firewall_name to allow traffic by $vpn_name, click on allow${NC}"
+echo -e "\nHit ${GREEN}ENTER${NC} to open the $vpn_name."
+read
+open "/Applications/${vpn_name}.app"
+
+
+echo -e "\nHit ${GREEN}ENTER${NC} to continue"
+read 
 
 
 # -----------------------------------------------------------------------------------------
-
-
-# Brew
-# Settings through terminal
 # Cleanup Script Installation
 # App-Cleaner Script Installation
+# MacAddressRandomizer on Restart
+# Settings through terminal
+## Set Hostname
+## Clean Up Dock
+# Turn on network connection
+# Brew
+
+
+
+
