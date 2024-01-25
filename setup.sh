@@ -164,7 +164,7 @@ echo -e "\nHit ${GREEN}ENTER${NC} to start the installation (you will be prompte
 read
 
 # Mount the DMG
-sudo hdiutil attach firewall.dmg
+sudo hdiutil attach "$script_dir/vpn_and_firewall/firewall.dmg"
 
 # Get the directory of the mounted volume
 if [[ "$firewall_name" == "Little Snitch" ]]; then
@@ -204,7 +204,7 @@ select firewall_choice in "${options[@]}"; do
     case $firewall_choice in
         "ProtonVPN")
 			vpn_name="ProtonVPN"
-			sudo hdiutil attach vpn.dmg
+			sudo hdiutil attach "$script_dir/vpn_and_firewall/vpn.dmg"
 			rsync -a "/Volumes/ProtonVPN/ProtonVPN.app" "/Applications/"
 			sleep 5
 			sudo hdiutil detach "/Volumes/ProtonVPN/"
