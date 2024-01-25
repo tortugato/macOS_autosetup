@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Clear the terminal before use
-clear
-
-# Get the path for the script directory
-script_path=$(realpath "$0")
-script_dir=$(dirname "$script_path")
-
-# Get the width of the terminal window
-width=$(tput cols)
-
 # Set colors to the accroding variables
 BOLD='\033[1m'
 ITALIC='\033[3m'
@@ -17,9 +7,62 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
+# Get the width of the terminal window
+width=$(tput cols)
+
+# Get the path for the script directory
+script_path=$(realpath "$0")
+script_dir=$(dirname "$script_path")
+
+# Clear the terminal before use
+clear
+
+# -----------------------------------------------------------------------------------------
+
+# Make sure User meets requirements for setup
+
+# Run the entire script with sudo
+if [ "$EUID" -ne 0 ]; then
+    echo -e "${RED}Please run this script with sudo.${NC}"
+    exit 1
+fi
+
+# Check if Filevault is on
+filevault_status=$(fdesetup status)
+
+if [[ "$filevault_status" != "FileVault is On." ]]; then
+    echo "FileVault is not enabled. Enabling FileVault..."
+    fdesetup enable
+    echo -e "\n${RED}Please save the Recovery Key in a secure location, e.g. you password manager of choice.${NC} \nHit ${GREEN}ENTER${NC} to start the setup"
+    read
+fi
+
+# Check if internet connection is available
+function check_internet_connection() {
+    if ping -q -c 1 -W 1 proton.me > /dev/null 2>&1; then
+        echo "Internet connection is available."
+        echo -e "${RED}Please turn you internet connection off and restart the script.${NC}"
+        exit 1
+    fi
+}
+
+check_internet_connection
+
+# Check if VPN and Firewall files are in directory
+if ! ( [ -e "$script_dir/vpn.pkg" ] || [ -e "$script_dir/vpn.dmg" ] ) || [ ! -e "$script_dir/firewall.dmg" ]; then
+    echo -e "${RED}Not all files required for this setup are in $script_dir.${NC}"
+    echo "Please double check to include a vpn and a firewall file. (vpn.pkg/vpn.dmg and firewall.dmg)"
+    echo -e "\nHit ${GREEN}ENTER${NC} to continue"
+    read
+fi
+
+# -----------------------------------------------------------------------------------------
+
+clear
 
 # Start of Script
-echo -e "${BOLD}WELCOME TO THE SETUP${NC} \n\nPlease make sure to store your VPN of choice as ${ITALIC}vpn.pkg/vpn.dmg${NC} and a firewall of you choice as ${ITALIC}firewall.dmg${NC} in the directory of this script. \n(directory: $script_dir/) \n\nHit ${GREEN}ENTER${NC} to continue or ${RED}ctrl-c${NC} if you have to add the files"
+echo -e "${BOLD}WELCOME TO THE SETUP${NC} \n\nPlease make sure to store your VPN of choice as ${BOLD}vpn.pkg/vpn.dmg${NC} and a firewall of you choice as ${BOLD}firewall.dmg${NC} in the directory of this script.\n${ITALIC}(directory: $script_dir/)${NC}"
+echo -e "\n\nHit ${GREEN}ENTER${NC} to continue or ${RED}ctrl-c${NC} if you have to add the files"
 read 
 clear
 
@@ -28,11 +71,68 @@ echo -e "\nHit ${GREEN}ENTER${NC} to continue"
 read
 clear
 
-echo -e "First we will start by installing a Firewall and a VPN. \nAfter this we will turn on the network connection."
+
+# -----------------------------------------------------------------------------------------
+
+# Remove unneccessary features
+echo -e "First we will disable a few unneccessary features. \nYou will be asked if you want a feature to be disabled."
+echo -e "\nHit ${GREEN}ENTER${NC} to start"
+read
+
+function run_command() {
+    local prompt="$1"
+    local command_to_run="$2"
+
+    echo -n "$prompt (y/n): "
+    read choice
+
+    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+        echo "Running the command..."
+        # Run the specified command
+        eval "$command_to_run"
+    elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
+        echo "Exiting without running the command."
+    else
+        echo "Invalid choice. Please enter 'y' or 'n'."
+    fi
+}
+
+# Run Commands
+diable_siri="
+defaults write com.apple.assistant.support 'Assistant Enabled' -bool false &&
+defaults write com.apple.assistant.backedup 'Use device speaker for TTS' -int 3 &&
+launchctl disable 'user/$UID/com.apple.assistantd' &&
+launchctl disable 'gui/$UID/com.apple.assistantd' &&
+sudo launchctl disable 'system/com.apple.assistantd' &&
+launchctl disable 'user/$UID/com.apple.Siri.agent' &&
+launchctl disable 'gui/$UID/com.apple.Siri.agent' &&
+sudo launchctl disable 'system/com.apple.Siri.agent' &&
+defaults write com.apple.SetupAssistant 'DidSeeSiriSetup' -bool True &&
+defaults write com.apple.systemuiserver 'NSStatusItem Visible Siri' 0 &&
+defaults write com.apple.Siri 'StatusMenuVisible' -bool false &&
+defaults write com.apple.Siri 'UserHasDeclinedEnable' -bool true &&
+defaults write com.apple.assistant.support 'Siri Data Sharing Opt-In Status' -int 2"
+
+disable_remote_connections="
+sudo systemsetup -setremotelogin off &&
+sudo launchctl disable 'system/com.apple.tftpd' &&
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true &&
+sudo launchctl disable system/com.apple.telnetd &&
+cupsctl --no-share-printers &&
+cupsctl --no-remote-any &&
+cupsctl --no-remote-admin"
+
+run_command "Do you want to Disable Spotlight? (you can install an alternative like Raycast/Alfred later)" "mdutil -i off && mdutil -E"
+run_command "Do you want to Disable Siri? (recommended)" "$disable_siri"
+run_command "Do you want to Disable AirDrop? (recommended)" "defaults write com.apple.NetworkBrowser DisableAirDrop -bool true"
+run_command "Do you want to Disable Remote Connections? (recommended)" "$disable_remote_connections"
+run_command "Do you want to Disable Gatekeeper (recommended)" "spctl --master-disable"
+
+# -----------------------------------------------------------------------------------------
+echo -e "Next we will install a Firewall and a VPN. \nAfter this we will turn on the network connection."
 echo -e "\nHit ${GREEN}ENTER${NC} to continue"
 read
 
-# -----------------------------------------------------------------------------------------
 
 # Display the menu to choose which firewall to install
 echo "\nWhich Firewall do you want to install? (enter the number): "
@@ -88,7 +188,7 @@ clear
 echo -e "${GREEN}The Firewall was successfully installed.${NC}"
 echo -e "\n${RED}Please follow the setup process for LittleSnitch before continuing.${NC}"
 echo -e "\n${BOLD}REMINDER: $firewall_install_note"
-echo -e "\nHit ${GREEN}ENTER${NC} to continue"
+echo -e "\nHit ${GREEN}ENTER${NC} when you are finished setting up $firewall_name"
 read 
 
 # -----------------------------------------------------------------------------------------
