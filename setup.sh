@@ -33,7 +33,8 @@ filevault_status=$(fdesetup status)
 if [[ "$filevault_status" != "FileVault is On." ]]; then
     echo "FileVault is not enabled. Enabling FileVault..."
     fdesetup enable
-    echo -e "\n${RED}Please save the Recovery Key in a secure location, e.g. you password manager of choice.${NC} \nHit ${GREEN}ENTER${NC} to start the setup"
+    echo -e "\n${RED}Please save the Recovery Key in a secure location, e.g. you password manager of choice.${NC} 
+    \nHit ${GREEN}ENTER${NC} to start the setup"
     read
 fi
 
@@ -49,10 +50,10 @@ function check_internet_connection() {
 check_internet_connection
 
 # Check if VPN and Firewall files are in directory
-if ! ( [ -e "$script_dir/vpn.pkg" ] || [ -e "$script_dir/vpn.dmg" ] ) || [ ! -e "$script_dir/firewall.dmg" ]; then
+if ! ( [ -e "$script_dir/vpn_and_firewall/vpn.pkg" ] || [ -e "$script_dir/vpn_and_firewall/vpn.dmg" ] ) || [ ! -e "$script_dir/vpn_and_firewall/firewall.dmg" ]; then
     echo -e "${RED}Not all files required for this setup are in $script_dir.${NC}"
     echo "Please double check to include a vpn and a firewall file. (vpn.pkg/vpn.dmg and firewall.dmg)"
-    echo -e "\nHit ${GREEN}ENTER${NC} to continue"
+    echo -e "\nHit ${GREEN}ENTER${NC} when you have noted your key"
     read
 fi
 
@@ -61,12 +62,26 @@ fi
 clear
 
 # Start of Script
-echo -e "${BOLD}WELCOME TO THE SETUP${NC} \n\nPlease make sure to store your VPN of choice as ${BOLD}vpn.pkg/vpn.dmg${NC} and a firewall of you choice as ${BOLD}firewall.dmg${NC} in the directory of this script.\n${ITALIC}(directory: $script_dir/)${NC}"
-echo -e "\n\nHit ${GREEN}ENTER${NC} to continue or ${RED}ctrl-c${NC} if you have to add the files"
+echo -e "${BOLD}WELCOME TO THE SETUP${NC}"
+echo -e "This setup script aims to set up MacOS in the most private and secure way possible. 
+This script performs steps that I consider necessary and unavoidable to use MacOS privately and securely. 
+I will continue to improve this script, so please keep an eye on the Github repository for possible changes.
+\nIf you have any suggestions for improvement, please post an issue to Github, I will try to take care of it as soon as possible.
+\nLets get started. Here is an overview of the steps this script will guide you through.
+\n1) Deactivation of unneccessary features
+\n2) Installation of helpful scripts
+\n3) Setting a generic Hostname & MacAddress Randomizer
+\n4) Changing some basic Settings
+\n5) Cleaning up the look of MacOs
+\n6) Installation of a Firewall
+\n7) Installation of a VPN
+\n8) Installation of other helpful software"
+
+echo -e "\n\nHit ${GREEN}ENTER${NC} to continue or ${RED}ctrl-c${NC} to abort."
 read 
 clear
 
-echo -e "After the initial setup of your system according to the README/Video we will now configure the macOS system for privacy and security."
+echo -e "After the initial setup of your system according to the ReadME we will now configure the macOS system for privacy and security."
 echo -e "\nHit ${GREEN}ENTER${NC} to continue"
 read
 clear
@@ -90,6 +105,7 @@ function run_command() {
         echo "Running the command..."
         # Run the specified command
         eval "$command_to_run"
+        echo -e "${GREEN}Successfull${NC}\n"
     elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
         echo "Exiting without running the command."
     else
@@ -122,13 +138,31 @@ cupsctl --no-share-printers &&
 cupsctl --no-remote-any &&
 cupsctl --no-remote-admin"
 
+disable_power_options="
+pmset -a tcpkeepalive 0 &&
+pmset -a powernap 0 &&
+pmset -a networkoversleep 0 &&
+pmset -a ttyskeepawake 0 &&
+pmset -a womp 0"
+
 run_command "Do you want to Disable Spotlight? (you can install an alternative like Raycast/Alfred later)" "mdutil -i off && mdutil -E"
 run_command "Do you want to Disable Siri? (recommended)" "$disable_siri"
 run_command "Do you want to Disable AirDrop? (recommended)" "defaults write com.apple.NetworkBrowser DisableAirDrop -bool true"
-run_command "Do you want to Disable Remote Connections? (recommended)" "$disable_remote_connections"
+run_command "Do you want to Disable Remote Connections? (recommended, but it can take a few seconds to complete)" "$disable_remote_connections"
 run_command "Do you want to Disable Gatekeeper (recommended)" "spctl --master-disable"
+run_command "Do you want to Disable Power Options (recommended)" "$disable_power_options"
 
 # -----------------------------------------------------------------------------------------
+# Cleanup Script Installation
+# App-Cleaner Script Installation
+# MacAddressRandomizer on Restart
+# Set Hostname
+# Settings through terminal
+# Clean Up Dock
+
+# -----------------------------------------------------------------------------------------
+
+# Installation of a Firewall
 echo -e "Next we will install a Firewall and a VPN. \nAfter this we will turn on the network connection."
 echo -e "\nHit ${GREEN}ENTER${NC} to continue"
 read
@@ -235,12 +269,7 @@ read
 
 
 # -----------------------------------------------------------------------------------------
-# Cleanup Script Installation
-# App-Cleaner Script Installation
-# MacAddressRandomizer on Restart
-# Settings through terminal
-## Set Hostname
-## Clean Up Dock
+
 # Turn on network connection
 # Brew
 
