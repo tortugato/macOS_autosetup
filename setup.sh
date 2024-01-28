@@ -18,7 +18,7 @@ clear
 # Requirements functions
 
 # Run the entire script with sudo
-function check_sudo(){
+function checkSudo(){
     if [ "$EUID" -ne 0 ]; then
     echo -e "${RED}Please run this script with sudo.${NC}"
     exit 1
@@ -26,7 +26,7 @@ function check_sudo(){
 }
 
 # Check if Filevault is on
-function check_filevault(){
+function checkFilevault(){
     filevault_status=$(fdesetup status)
     if [[ "$filevault_status" != "FileVault is On." ]]; then
         echo "FileVault is not enabled. Enabling FileVault..."
@@ -38,7 +38,7 @@ function check_filevault(){
 }
 
 # Check if internet connection is available
-function check_internet_connection() {
+function checkInternetConnection() {
     if ping -q -c 1 -W 1 proton.me > /dev/null 2>&1; then
         echo "Internet connection is available."
         echo -e "${RED}Please turn your internet connection off and restart the script.${NC}"
@@ -73,14 +73,52 @@ function introduction(){
 }
 
 # -----------------------------------------------------------------------------------------
+# Cleanup Script Installation
+function installCleanupScript(){
+    clear
+    mkdir -p /usr/local/bin
+    cp "$script_dir/scripts/cleanup" "/usr/local/bin/cleanup"
+}
+
+# App-Cleaner Script Installation
+function installAppCleanerScript(){
+    clear
+    cp "$script_dir/scripts/app-cleaner" "/usr/local/bin/app-cleaner"
+}
+
+# MacAddressRandomizer on Restart
+function installMacaddressRandomizer(){
+    clear
+    mkdir -p /usr/local/sbin
+    chown ${USER}:admin /usr/local/sbin
+    touch ~/.zshrc
+    echo 'export PATH=$PATH:/usr/local/sbin' >> ~/.zshrc
+    source ~/.zshrc
+    cp "$script_dir/scripts/spoof.sh" "/usr/local/sbin/spoof.sh"
+    chmod +x /usr/local/sbin/spoof.sh
+    cp "$script_dir/scripts/local.spoof.plist" "/Library/LaunchDaemons/local.spoof.plist"
+    /usr/local/sbin/spoof.sh
+}
+
+function installLogoutHook(){
+    clear
+    cp "$script_dir/scripts/spoof-hook.sh" "/usr/local/sbin/spoof-hook.sh"
+    chmod +x /usr/local/sbin/spoof-hook.sh
+    defaults delete com.apple.loginwindow LogoutHook
+    defaults write com.apple.loginwindow LogoutHook "/usr/local/sbin/spoof-hook.sh"
+    defaults read com.apple.loginwindow
+}
+
+
+# -----------------------------------------------------------------------------------------
 # Remove unneccessary features
-function disable_features() {
+function disableFeatures() {
     clear
     echo -e "We will disable a few unneccessary features. \nYou will be asked if you want a feature to be disabled."
     echo -e "\nHit ${GREEN}ENTER${NC} to start"
     read
 
-    function run_command() {
+    function runCommand() {
         local prompt="$1"
         local command_to_run="$2"
         echo -en "${BOLD}$prompt${NC} (y/n): "
@@ -140,54 +178,18 @@ function disable_features() {
     pmset -a ttyskeepawake 0 &&
     pmset -a womp 0"
 
-    run_command "Do you want to Disable Spotlight? (you can install an alternative like Raycast/Alfred later)" "$disable_spotlight"
-    run_command "Do you want to Disable Siri? (recommended)" "$disable_siri"
-    run_command "Do you want to Disable AirDrop? (recommended)" "$disable_airdrop"
-    run_command "Do you want to Disable Remote Connections? (recommended, but it can take a few seconds to complete)" "$disable_remote_connections"
-    run_command "Do you want to Disable Gatekeeper (recommended)" "$disable_gatekeeper"
-    run_command "Do you want to Disable Power Options (recommended)" "$disable_power_options"
+    runCommand "Do you want to Disable Spotlight? (you can install an alternative like Raycast/Alfred later)" "$disable_spotlight"
+    runCommand "Do you want to Disable Siri? (recommended)" "$disable_siri"
+    runCommand "Do you want to Disable AirDrop? (recommended)" "$disable_airdrop"
+    runCommand "Do you want to Disable Remote Connections? (recommended, but it can take a few seconds to complete)" "$disable_remote_connections"
+    runCommand "Do you want to Disable Gatekeeper (recommended)" "$disable_gatekeeper"
+    runCommand "Do you want to Disable Power Options (recommended)" "$disable_power_options"
 }
 
-# -----------------------------------------------------------------------------------------
-# Cleanup Script Installation
-function install_cleanup_script(){
-    clear
-    mkdir -p /usr/local/bin
-    cp "$script_dir/scripts/cleanup" "/usr/local/bin/cleanup"
-}
-
-# App-Cleaner Script Installation
-function install_app_cleaner_script(){
-    clear
-    cp "$script_dir/scripts/app-cleaner" "/usr/local/bin/app-cleaner"
-}
-
-# MacAddressRandomizer on Restart
-function install_macaddress_randomizer(){
-    clear
-    mkdir -p /usr/local/sbin
-    chown ${USER}:admin /usr/local/sbin
-    touch ~/.zshrc
-    echo 'export PATH=$PATH:/usr/local/sbin' >> ~/.zshrc
-    source ~/.zshrc
-    cp "$script_dir/scripts/spoof.sh" "/usr/local/sbin/spoof.sh"
-    chmod +x /usr/local/sbin/spoof.sh
-    cp "$script_dir/scripts/local.spoof.plist" "/Library/LaunchDaemons/local.spoof.plist"
-    /usr/local/sbin/spoof.sh
-}
-
-function deactiveWifiOnLogout(){
-    clear
-    cp "$script_dir/scripts/spoof-hook.sh" "/usr/local/sbin/spoof-hook.sh"
-    chmod +x /usr/local/sbin/spoof-hook.sh
-    defaults delete com.apple.loginwindow LogoutHook
-    defaults write com.apple.loginwindow LogoutHook "/usr/local/sbin/spoof-hook.sh"
-    defaults read com.apple.loginwindow
-}
 
 # -----------------------------------------------------------------------------------------
 # Installation of a Firewall
-function install_firewall(){
+function installFirewall(){
     clear
     echo -e "Next we will install a Firewall."
 
@@ -271,7 +273,7 @@ function install_firewall(){
 
 # -----------------------------------------------------------------------------------------
 # Installation of VPN
-function install_vpn(){
+function installVpn(){
     clear
 
     # Check if vpn.dmg file is in folder
@@ -342,7 +344,7 @@ function install_vpn(){
 # Brew
 
 # -----------------------------------------------------------------------------------------
-function run_functions() {
+function runFunctions() {
     local prompt="$1"
     local command_to_run="$2"
     local valid_choice=false
@@ -368,20 +370,20 @@ function run_functions() {
 
 # Run functions 
 # Checks first
-check_sudo
-check_filevault
-check_internet_connection
+checkSudo
+checkFilevault
+checkInternetConnection
 
 # Introduction
 introduction
 
 # Install Scripts
-install_cleanup_script
-install_app_cleaner_script
-install_macaddress_randomizer
-deactiveWifiOnLogout
+installCleanupScript
+installAppCleanerScript
+installMacaddressRandomizer
+installLogoutHook
 
 # Optional but recommended installs
-run_functions "Do you want to Disable Features? (recommended)" "disable_features"
-run_functions "Do you want to Install a Firewall? (highly recommended)" "install_firewall"
-run_functions "Do you want to Install a VPN? (recommended)" "install_vpn"
+runFunctions "Do you want to Disable Features? (recommended)" "disableFeatures"
+runFunctions "Do you want to Install a Firewall? (highly recommended)" "installFirewall"
+runFunctions "Do you want to Install a VPN? (recommended)" "installVpn"
