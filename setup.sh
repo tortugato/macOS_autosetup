@@ -152,22 +152,21 @@ function disable_features() {
 # -----------------------------------------------------------------------------------------
 # Cleanup Script Installation
 function install_cleanup_script(){
-
+    mkdir -p /usr/local/bin
+    mv "$script_dir/scripts/cleanup" "/usr/local/bin/cleanup"
 }
 
 # App-Cleaner Script Installation
 function install_app_cleaner_script(){
-
+    mv "$script_dir/scripts/app-cleaner" "/usr/local/bin/app-cleaner"
 }
 
 # MacAddressRandomizer on Restart
 function install_macaddress_randomizer(){
-
-}
-
-# Set Hostname to generic name
-function setHostname(){
-
+    mkdir -p /usr/local/sbin
+    mv "$script_dir/scripts/spoof.sh" "/usr/local/sbin/spoof.sh"
+    mv "$script_dir/scripts/local.spoof.plist" "/Library/LaunchDaemons/local.spoof.plist"
+    eval spoof.sh
 }
 
 # Settings through terminal
@@ -373,6 +372,13 @@ check_internet_connection
 
 # Introduction
 introduction
+
+# Install Scripts
+install_cleanup_script
+install_app_cleaner_script
+install_macaddress_randomizer
+
+# Optional but recommended installs
 run_functions "Do you want to Disable Features? (recommended)" "disable_features"
 run_functions "Do you want to Install a Firewall? (highly recommended)" "install_firewall"
 run_functions "Do you want to Install a VPN? (recommended)" "install_vpn"
