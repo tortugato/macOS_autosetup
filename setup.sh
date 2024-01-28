@@ -153,20 +153,32 @@ function disable_features() {
 # Cleanup Script Installation
 function install_cleanup_script(){
     mkdir -p /usr/local/bin
-    mv "$script_dir/scripts/cleanup" "/usr/local/bin/cleanup"
+    cp "$script_dir/scripts/cleanup" "/usr/local/bin/cleanup"
 }
 
 # App-Cleaner Script Installation
 function install_app_cleaner_script(){
-    mv "$script_dir/scripts/app-cleaner" "/usr/local/bin/app-cleaner"
+    cp "$script_dir/scripts/app-cleaner" "/usr/local/bin/app-cleaner"
 }
 
 # MacAddressRandomizer on Restart
 function install_macaddress_randomizer(){
     mkdir -p /usr/local/sbin
-    mv "$script_dir/scripts/spoof.sh" "/usr/local/sbin/spoof.sh"
-    mv "$script_dir/scripts/local.spoof.plist" "/Library/LaunchDaemons/local.spoof.plist"
-    eval spoof.sh
+    chown ${USER}:admin /usr/local/sbin
+    touch ~/.zshrc
+    echo 'export PATH=$PATH:/usr/local/sbin' >> ~/.zshrc
+    source ~/.zshrc
+    cp "$script_dir/scripts/spoof.sh" "/usr/local/sbin/spoof.sh"
+    chmod +x /usr/local/sbin/spoof.sh
+    cp "$script_dir/scripts/local.spoof.plist" "/Library/LaunchDaemons/local.spoof.plist"
+    /usr/local/sbin/spoof.sh
+}
+
+function deactiveWifiOnLogout(){
+    cp "$script_dir/scripts/spoof-hook.sh" "/usr/local/sbin/spoof-hook.sh"
+    chmod +x /usr/local/sbin/spoof-hook.sh
+    defaults delete com.apple.loginwindow LogoutHook
+    defaults write com.apple.loginwindow LogoutHook "/usr/local/sbin/spoof-hook.sh"
 }
 
 # -----------------------------------------------------------------------------------------
@@ -327,6 +339,7 @@ function install_vpn(){
 
 # -----------------------------------------------------------------------------------------
 function run_functions() {
+    clear
     local prompt="$1"
     local command_to_run="$2"
     local valid_choice=false
@@ -363,6 +376,7 @@ introduction
 install_cleanup_script
 install_app_cleaner_script
 install_macaddress_randomizer
+deactiveWifiOnLogout
 
 # Optional but recommended installs
 run_functions "Do you want to Disable Features? (recommended)" "disable_features"
