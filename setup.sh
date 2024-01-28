@@ -169,20 +169,6 @@ function install_macaddress_randomizer(){
     eval spoof.sh
 }
 
-# Settings through terminal
-function setSettings(){
-    ## firewall defaults write /Library/Preferences/com.apple.alf globalstate -int 1
-    ## hidden files
-    ## recent files
-    ## disable ask to join hotspots
-    ## time from ntp
-}
-
-# Clean up the look
-function cleanLook(){
-
-}
-
 # -----------------------------------------------------------------------------------------
 # Installation of a Firewall
 function install_firewall(){
