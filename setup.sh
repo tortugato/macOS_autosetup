@@ -83,11 +83,10 @@ function disable_features() {
     function run_command() {
         local prompt="$1"
         local command_to_run="$2"
-
-        echo -n "$prompt (y/n): "
+        echo -en "${BOLD}$prompt${NC} (y/n): "
         read choice
 
-        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+        if [[ "$choice" == "y" || "$choice" == "Y" || -z "$choice" ]]; then
             echo "Running the command..."
             # Run the specified command
             eval "$command_to_run"
@@ -104,15 +103,15 @@ function disable_features() {
     mdutil -i off && 
     mdutil -E"
 
-    diable_siri="
+    disable_siri="
     defaults write com.apple.assistant.support 'Assistant Enabled' -bool false &&
     defaults write com.apple.assistant.backedup 'Use device speaker for TTS' -int 3 &&
     launchctl disable 'user/$UID/com.apple.assistantd' &&
     launchctl disable 'gui/$UID/com.apple.assistantd' &&
-    sudo launchctl disable 'system/com.apple.assistantd' &&
+    launchctl disable 'system/com.apple.assistantd' &&
     launchctl disable 'user/$UID/com.apple.Siri.agent' &&
     launchctl disable 'gui/$UID/com.apple.Siri.agent' &&
-    sudo launchctl disable 'system/com.apple.Siri.agent' &&
+    launchctl disable 'system/com.apple.Siri.agent' &&
     defaults write com.apple.SetupAssistant 'DidSeeSiriSetup' -bool True &&
     defaults write com.apple.systemuiserver 'NSStatusItem Visible Siri' 0 &&
     defaults write com.apple.Siri 'StatusMenuVisible' -bool false &&
@@ -123,10 +122,10 @@ function disable_features() {
     defaults write com.apple.NetworkBrowser DisableAirDrop -bool true"
 
     disable_remote_connections="
-    sudo systemsetup -setremotelogin off &&
-    sudo launchctl disable 'system/com.apple.tftpd' &&
-    sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true &&
-    sudo launchctl disable system/com.apple.telnetd &&
+    systemsetup -setremotelogin off &&
+    launchctl disable 'system/com.apple.tftpd' &&
+    defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true &&
+    launchctl disable system/com.apple.telnetd &&
     cupsctl --no-share-printers &&
     cupsctl --no-remote-any &&
     cupsctl --no-remote-admin"
@@ -152,17 +151,20 @@ function disable_features() {
 # -----------------------------------------------------------------------------------------
 # Cleanup Script Installation
 function install_cleanup_script(){
+    clear
     mkdir -p /usr/local/bin
     cp "$script_dir/scripts/cleanup" "/usr/local/bin/cleanup"
 }
 
 # App-Cleaner Script Installation
 function install_app_cleaner_script(){
+    clear
     cp "$script_dir/scripts/app-cleaner" "/usr/local/bin/app-cleaner"
 }
 
 # MacAddressRandomizer on Restart
 function install_macaddress_randomizer(){
+    clear
     mkdir -p /usr/local/sbin
     chown ${USER}:admin /usr/local/sbin
     touch ~/.zshrc
@@ -175,10 +177,12 @@ function install_macaddress_randomizer(){
 }
 
 function deactiveWifiOnLogout(){
+    clear
     cp "$script_dir/scripts/spoof-hook.sh" "/usr/local/sbin/spoof-hook.sh"
     chmod +x /usr/local/sbin/spoof-hook.sh
     defaults delete com.apple.loginwindow LogoutHook
     defaults write com.apple.loginwindow LogoutHook "/usr/local/sbin/spoof-hook.sh"
+    defaults read com.apple.loginwindow
 }
 
 # -----------------------------------------------------------------------------------------
@@ -237,7 +241,7 @@ function install_firewall(){
     read
 
     # Mount the DMG
-    sudo hdiutil attach "$script_dir/vpn_and_firewall/firewall.dmg"
+    hdiutil attach "$script_dir/vpn_and_firewall/firewall.dmg"
 
     # Get the directory of the mounted volume
     if [[ "$firewall_name" == "Little Snitch" ]]; then
@@ -251,7 +255,7 @@ function install_firewall(){
     sleep 5
 
     # Unmount the DMG
-    sudo hdiutil detach "${app_name}/"
+    hdiutil detach "${app_name}/"
     sleep 3
 
     #Open the firewall
@@ -310,13 +314,13 @@ function install_vpn(){
 
     # Continue with installation based on the selected VPN
     if [ "$vpn_name" == "ProtonVPN" ]; then
-        sudo hdiutil attach "$vpn_file"
+        hdiutil attach "$vpn_file"
         rsync -a "/Volumes/ProtonVPN/ProtonVPN.app" "/Applications/"
         sleep 5
-        sudo hdiutil detach "/Volumes/ProtonVPN/"
+        hdiutil detach "/Volumes/ProtonVPN/"
         sleep 3
     elif [ "$vpn_name" == "Mullvad VPN" ]; then
-        sudo installer -package "$vpn_file" -target /
+        installer -package "$vpn_file" -target /
     fi
 
     clear
@@ -339,7 +343,6 @@ function install_vpn(){
 
 # -----------------------------------------------------------------------------------------
 function run_functions() {
-    clear
     local prompt="$1"
     local command_to_run="$2"
     local valid_choice=false
