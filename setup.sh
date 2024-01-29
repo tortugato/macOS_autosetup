@@ -244,7 +244,7 @@ function installFirewall(){
         case $firewall_choice in
             "LittleSnitch")
                 firewall_name="Little Snitch"
-                firewall_install_note="\n1) Uncheck Apple Services and iCloud Services during the last step of installation \n2) Allow Notifications and the System Extension by LittleSnitch \n3) Click on DemoMode as we won't be able to active the LittleSnitch license now \n4) Turn on Alert Mode (not Silent Mode)"
+                firewall_install_note="\n1) Uncheck Apple Services and iCloud Services during the last step of installation \n2) Allow Notifications and the System Extension by LittleSnitch \n3) Click on DemoMode as we won't be able to active the LittleSnitch license now \n4) Turn on Alert Mode (not Silent Mode) \n5) After the initial setup open Little Snitch, click on File -> Restore from Backup and select the provided LittleSnitch.xpl file."
                 break
                 ;;
             "LuLu")
