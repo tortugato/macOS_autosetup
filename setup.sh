@@ -74,41 +74,64 @@ function introduction(){
 
 # -----------------------------------------------------------------------------------------
 # Cleanup Script Installation
-function installCleanupScript(){
+function installScripts(){
     clear
-    mkdir -p /usr/local/bin
-    cp "$script_dir/scripts/cleanup" "/usr/local/bin/cleanup"
-}
+    echo -e "${BOLD}Installing Scripts...${NC}"
 
-# App-Cleaner Script Installation
-function installAppCleanerScript(){
-    clear
-    cp "$script_dir/scripts/app-cleaner" "/usr/local/bin/app-cleaner"
-}
+    function installScripts() {
+        local success=true
+        local prompt="$1"
+        local command_to_run="$2"
 
-# MacAddressRandomizer on Restart
-function installMacaddressRandomizer(){
-    clear
-    mkdir -p /usr/local/sbin
-    chown ${USER}:admin /usr/local/sbin
-    touch ~/.zshrc
-    echo 'export PATH=$PATH:/usr/local/sbin' >> ~/.zshrc
-    source ~/.zshrc
-    cp "$script_dir/scripts/spoof.sh" "/usr/local/sbin/spoof.sh"
-    chmod +x /usr/local/sbin/spoof.sh
-    cp "$script_dir/scripts/local.spoof.plist" "/Library/LaunchDaemons/local.spoof.plist"
-    /usr/local/sbin/spoof.sh
-}
+        echo -e "${BOLD}$prompt${NC}"
+        echo -e "Running the command..."
+        eval "$command_to_run"
+           
+        if [ $? -ne 0 ]; then
+            success=false
+        fi
+    
+        if [ "$success" = true ]; then
+            echo -e "${GREEN}Successful${NC}\n"
+        else
+            echo -e "${RED}Failed${NC}\n"
+        fi
+    }
 
-function installLogoutHook(){
-    clear
-    cp "$script_dir/scripts/spoof-hook.sh" "/usr/local/sbin/spoof-hook.sh"
+    installCleanupScript="
+    mkdir -p /usr/local/bin &&
+    cp '$script_dir/scripts/cleanup' '/usr/local/bin/cleanup'
+    "
+
+    installAppCleanerScript="
+    cp '$script_dir/scripts/app-cleaner' '/usr/local/bin/app-cleaner'
+    "
+
+    installMacaddressRandomizer="
+    mkdir -p /usr/local/sbin &&
+    chown ${USER}:admin /usr/local/sbin &&
+    touch ~/.zshrc &&
+    echo 'export PATH=$PATH:/usr/local/sbin' >> ~/.zshrc &&
+    source ~/.zshrc &&
+    cp '$script_dir/scripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
+    chmod +x /usr/local/sbin/spoof.sh &&
+    cp '$script_dir/scripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist' &&
+    eval '/usr/local/sbin/spoof.sh'
+    "
+
+    installLogoutHook="
+    cp '$script_dir/scripts/spoof-hook.sh' '/usr/local/sbin/spoof-hook.sh' &&
     chmod +x /usr/local/sbin/spoof-hook.sh
     defaults delete com.apple.loginwindow LogoutHook
-    defaults write com.apple.loginwindow LogoutHook "/usr/local/sbin/spoof-hook.sh"
+    defaults write com.apple.loginwindow LogoutHook '/usr/local/sbin/spoof-hook.sh'
     defaults read com.apple.loginwindow
-}
+    "
 
+    installScripts "Installing Cleanup Script" "$installCleanupScript"
+    installScripts "Installing App Cleaner Script" "$installAppCleanerScript"
+    installScripts "Installing Mac Address Randomizer" "$installMacaddressRandomizer"
+    installScripts "Installing Logout Hook" "$installLogoutHook"
+}
 
 # -----------------------------------------------------------------------------------------
 # Remove unneccessary features
@@ -378,10 +401,7 @@ checkInternetConnection
 introduction
 
 # Install Scripts
-installCleanupScript
-installAppCleanerScript
-installMacaddressRandomizer
-installLogoutHook
+installScripts
 
 # Optional but recommended installs
 runFunctions "Do you want to Disable Features? (recommended)" "disableFeatures"
