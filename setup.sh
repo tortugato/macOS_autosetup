@@ -134,6 +134,98 @@ function installScripts(){
 }
 
 # -----------------------------------------------------------------------------------------
+function setSettings(){
+clear
+    
+    function configureSettings() {
+        local prompt="$1"
+        shift  # Remove the prompt from the list of commands
+        local commands=("$@")
+
+        echo -e "${BOLD}$prompt${NC}"
+
+        local success=true
+
+        # Run each command in the array
+        for cmd in "${commands[@]}"; do
+            eval "$cmd"
+            # Check the exit status
+            if [ $? -ne 0 ]; then
+                success=false
+                break
+            fi
+        done
+
+        if [ "$success" = true ]; then
+            echo -e "${GREEN}Successful${NC}\n"
+        else
+            echo -e "${RED}Failed${NC}\n"
+        fi
+    }
+
+    # Commands for activating firewall
+    activateFirewall=(
+        "/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on --setallowsigned off --setallowsignedapp off --setloggingmode off --setstealthmode on --setglobalstate on"
+    )
+
+    # Commands for checking firewall settings manually
+    checkFirewallSettings=(
+        "echo -e '\n${RED}Please double-check the firewall settings in System Settings -> Network -> Firewall -> Options.${NC}'"
+        "echo 'The firewall should be enabled, Stealth Mode should be enabled, and 'Block all incoming connections' should be true.'"
+        "open '/System/Applications/System Settings.app'"
+        "echo -e 'Hit ${GREEN}ENTER${NC} when you check the settings'"
+        "read"
+        "killall -9 'System Settings'"
+    )
+
+    setTimeFromNTP=(
+        "systemsetup -setnetworktimeserver pool.ntp.org"
+        "systemsetup -setusingnetworktime on"
+    )
+
+    configurePassword=(
+        "defaults write NSGlobalDomain RetriesUntilHint -int 0"
+    )
+
+    showNameAndPassword=(
+        "defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool yes"
+    )
+
+    disableAnalytics=(
+        "sudo defaults write '/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist' AutoSubmit -bool no"
+        "sudo chmod 644 '/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist'"
+        "sudo chgrp admin '/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist'"
+    )
+    
+    disableAdvertising=(
+        "/usr/bin/sudo -u $USER /usr/bin/defaults write '$HOME/Library/Preferences/com.apple.Adlib.plist' allowApplePersonalizedAdvertising -bool false"
+    )
+
+    disableMetadataFiles=(
+        "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
+        "defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true"
+    )
+
+    # configure Finder
+    # recent files
+    # Hostpot
+    # Handoff
+    # display sleep
+
+    # Run the configureSettings function for each set of commands
+    configureSettings "Activating Firewall" "${activateFirewall[@]}"
+    configureSettings "Check Firewall Settings" "${checkFirewallSettings[@]}"
+    configureSettings "Set Time from NTP" "${setTimeFromNTP[@]}"
+    configureSettings "Don't show Password Hints on Lockscreen" "${configurePassword[@]}"
+    configureSettings "Show name and password field instead of user list on lockscreen" "${showNameAndPassword[@]}"
+    configureSettings "Disable Handoff" "${disableHandoff[@]}"
+    configureSettings "Disable Analytics" "${disableAnalytics[@]}"
+    configureSettings "Disable Advertising" "${disableAdvertising[@]}"
+    configureSettings "Disable Metadata Files" "${disableMetadataFiles[@]}"
+
+}
+
+# -----------------------------------------------------------------------------------------
 # Remove unneccessary features
 function disableFeatures() {
     clear
@@ -402,6 +494,9 @@ introduction
 
 # Install Scripts
 installScripts
+
+# Configure Settings
+setSettings
 
 # Optional but recommended installs
 runFunctions "Do you want to Disable Features? (recommended)" "disableFeatures"
