@@ -10,7 +10,7 @@ NC='\033[0m'
 # Get the path for the script directory
 script_path=$(realpath "$0")
 script_dir=$(dirname "$script_path")
-
+main_dir=$(dirname "$script_dir")
 # Clear the terminal before use
 clear
 
@@ -90,11 +90,11 @@ function installScripts(){
 
     installCleanupScript="
     mkdir -p /usr/local/bin &&
-    cp '$script_dir/installscripts/cleanup' '/usr/local/bin/cleanup'
+    cp '$main_dir/installscripts/cleanup' '/usr/local/bin/cleanup'
     "
 
     installAppCleanerScript="
-    cp '$script_dir/installscripts/app-cleaner' '/usr/local/bin/app-cleaner'
+    cp '$main_dir/installscripts/app-cleaner' '/usr/local/bin/app-cleaner'
     "
 
     installMacaddressRandomizer="
@@ -103,13 +103,13 @@ function installScripts(){
     touch ~/.zshrc &&
     echo 'export PATH=$PATH:/usr/local/sbin' >> ~/.zshrc &&
     source ~/.zshrc &&
-    cp '$script_dir/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
+    cp '$main_dir/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
     chmod +x /usr/local/sbin/spoof.sh &&
-    cp '$script_dir/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist'
+    cp '$main_dir/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist'
     "
 
     installLogoutHook="
-    cp '$script_dir/installscripts/spoof-hook.sh' '/usr/local/sbin/spoof-hook.sh' &&
+    cp '$main_dir/installscripts/spoof-hook.sh' '/usr/local/sbin/spoof-hook.sh' &&
     chmod +x /usr/local/sbin/spoof-hook.sh
     defaults delete com.apple.loginwindow LogoutHook
     defaults write com.apple.loginwindow LogoutHook '/usr/local/sbin/spoof-hook.sh'
@@ -171,10 +171,10 @@ function setSettings(){
         "defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool yes"
     )
 
-    disableHandoff=(
-        "defaults -currentHost write com.apple.coreservices.useractivityd ActivityAdvertisingAllowed -bool no"
-        "defaults -currentHost write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bool no"
-    )
+    #disableHandoff=(
+    #    "defaults -currentHost write com.apple.coreservices.useractivityd ActivityAdvertisingAllowed -bool no"
+    #    "defaults -currentHost write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bool no"
+    #)
 
     disableAnalytics=(
         "defaults write '/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist' AutoSubmit -bool no"
