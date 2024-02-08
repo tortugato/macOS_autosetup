@@ -124,6 +124,8 @@ function installScripts(){
 
 # -----------------------------------------------------------------------------------------
 function setSettings(){
+    echo -e "${BOLD}Settings some important settings...${NC}"
+
     
     function configureSettings() {
         local prompt="$1"
@@ -154,16 +156,7 @@ function setSettings(){
     # Commands for activating firewall
     activateFirewall=(
         "/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on --setallowsigned off --setallowsignedapp off --setloggingmode off --setstealthmode on --setglobalstate on"
-    )
-
-    # Commands for checking firewall settings manually
-    checkFirewallSettings=(
-        "echo -e '\n${RED}Please double-check the firewall settings in System Settings -> Network -> Firewall -> Options.${NC}'"
-        "echo 'The firewall should be enabled, Stealth Mode should be enabled, and 'Block all incoming connections' should be true.'"
-        "open '/System/Applications/System Settings.app'"
-        "echo -e 'Hit ${GREEN}ENTER${NC} when you check the settings'"
-        "read"
-        "killall -9 'System Settings'"
+        "/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on"
     )
 
     setTimeFromNTP=(
