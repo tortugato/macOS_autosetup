@@ -126,7 +126,6 @@ function installScripts(){
 function setSettings(){
     echo -e "${BOLD}Settings some important settings...${NC}"
 
-    
     function configureSettings() {
         local prompt="$1"
         shift  # Remove the prompt from the list of commands
