@@ -105,8 +105,7 @@ function installScripts(){
     source ~/.zshrc &&
     cp '$script_dir/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
     chmod +x /usr/local/sbin/spoof.sh &&
-    cp '$script_dir/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist' &&
-    eval '/usr/local/sbin/spoof.sh'
+    cp '$script_dir/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist'
     "
 
     installLogoutHook="
