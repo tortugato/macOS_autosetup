@@ -1,6 +1,6 @@
 # Run Scripts separately
 # Run commands that need sudo
-sudo ./sudo_functions.sh
+sudo ./scripts/sudo_functions.sh
 
 #check success
 if [ $? -ne 0 ]; then
@@ -8,4 +8,4 @@ if [ $? -ne 0 ]; then
 fi
 
 # Install homebrew (can't be run with sudo)
-./homebrew.sh
+./scripts/homebrew.sh
