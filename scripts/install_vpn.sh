@@ -64,13 +64,6 @@ function installVpn(){
 
     clear
     echo -e "${GREEN}The VPN was successfully installed.${NC}"
-    echo -e "\nPlease make sure to ${BOLD}turn the Killswitch on${NC}, then we will continue with the network connectivity. \n${RED}If you get prompted by $firewall_name to allow traffic by $vpn_name, click on allow${NC}"
-    echo -e "\nHit ${GREEN}ENTER${NC} to open the $vpn_name."
-    read
-
-    open "/Applications/${vpn_name}.app"
-    echo -e "\nHit ${GREEN}ENTER${NC} to continue"
-    read
 }
 
 installVpn
