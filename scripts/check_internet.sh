@@ -23,8 +23,10 @@ function checkInternetConnectionOff() {
             fi
         done <<< "$all_interfaces"
 
-        echo "Network interfaces disabled."
+        echo -e "\nNetwork interfaces disabled.\n"
         sleep 2
+    else
+        echo -e "\nNetwork interfaces already disabled.\n"
     fi
 }
 

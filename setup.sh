@@ -50,6 +50,7 @@ printSectionHeading "Turning Internet Connection off"
 sudo ./scripts/check_internet.sh
 
 # Check FileVault
+printSectionHeading "Turning FileVault On"
 sudo ./scripts/check_filevault.sh
 
 # Introduction

@@ -14,6 +14,9 @@ function checkFilevault(){
         echo -e "\n${RED}Please save the Recovery Key in a secure location, e.g. your password manager.${NC}
         \nHit ${GREEN}ENTER${NC} to continue"
         read
+    else
+    echo -e "\nFileVault is already enabled.\n"
+
     fi
 }
 
