@@ -32,7 +32,7 @@ brew bundle --file brewfiles/Brewfile_security
 
 
 # Ask to install custom brew file
-
+# Function to check for the existence of the custom Brewfile
 function checkBrewfile() {
     main_dir=$(dirname "$(dirname "$(realpath "$0")")")
     brew_file="$main_dir/brewfiles/Brewfile_custom"
@@ -53,22 +53,17 @@ function checkBrewfile() {
     done
 }
 
+# Ask the user if they want to install a custom Brewfile
+echo -n "Do you want to install a custom Brewfile? (y/n): "
+read -r choice
 
-while [ "$valid_choice" == false ]; do
-    echo -n "Do you want to install a custom brewfile? (y/n): "
-    read -r choice
+if [[ "$choice" == "y" || "$choice" == "Y" || -z "$choice" ]]; then
+    # Run the specified command
+    checkBrewfile
+    brew bundle --file brewfiles/Brewfile_custom
 
-    if [[ "$choice" == "y" || "$choice" == "Y" || -z "$choice" ]]; then
-        # Run the specified command
-        checkBrewfile
-        brew bundle --file brewfiles/Brewfile_custom
-
-        clear
-        valid_choice=true
-    elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
-        echo -e "Continuing without running the function.\n"
-        valid_choice=true
-    else
-        echo "Invalid choice. Please enter 'y' or 'n'."
-    fi
-done
+    clear
+    echo "Installation completed."
+else
+    echo "Continuing without installing a custom Brewfile."
+fi
