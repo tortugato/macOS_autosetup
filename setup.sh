@@ -83,6 +83,10 @@ printSectionHeading "Connect to VPN"
 printSectionHeading "Homebrew"
 ./scripts/homebrew.sh
 
+# Clean Up the Look
+printSectionHeading "Cleaning up Look"
+./scripts/clean_look.sh
+
 # Reboot on finish
 printSectionHeading "Script Finished!"
 sudo ./scripts/reboot_on_finish.sh
