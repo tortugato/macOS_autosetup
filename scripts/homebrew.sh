@@ -23,6 +23,8 @@ source /Users/$USER/.zshrc
 echo -e "\n${RED}Make sure to active the 'Apple Disabled' Profile for the next steps.${NC}"
 echo -e "\nHit ${GREEN}ENTER${NC} when your Profile is switched."
 read
+# Turn Analytics off
+brew analytics off
 
 # Update brew
 brew update
