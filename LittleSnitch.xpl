@@ -6,13 +6,18 @@
       "codeIdentifier" : "at.obdev.littlesnitch.softwareupdate",
       "type" : "trustedAnchor"
     },
-    "/Applications/Safari.app/Contents/MacOS/Safari" : {
-      "codeIdentifier" : "com.apple.Safari",
-      "type" : "anchorApple"
+    "/Applications/Mullvad VPN.app/Contents/Resources/mullvad-daemon" : {
+      "authorIdentifier" : "CKG9MXH72F",
+      "codeIdentifier" : "mullvad-daemon",
+      "type" : "trustedAnchor"
     },
     "/Library/Developer/CommandLineTools/usr/libexec/git-core/git-remote-http" : {
       "authorIdentifier" : "59GAB85EFG",
       "codeIdentifier" : "com.apple.git-remote-http",
+      "type" : "anchorApple"
+    },
+    "/sbin/ping" : {
+      "codeIdentifier" : "com.apple.ping",
       "type" : "anchorApple"
     },
     "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal" : {
@@ -30,10 +35,6 @@
       "codeIdentifier" : "com.apple.AssetCacheLocatorService",
       "type" : "anchorApple"
     },
-    "/System/Library/PrivateFrameworks/CallHistory.framework/Support/CallHistorySyncHelper" : {
-      "codeIdentifier" : "com.apple.CallHistorySyncHelper",
-      "type" : "anchorApple"
-    },
     "/System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated" : {
       "codeIdentifier" : "com.apple.mobile.softwareupdated",
       "type" : "anchorApple"
@@ -41,17 +42,6 @@
     "/System/Library/PrivateFrameworks/Noticeboard.framework/Versions/A/Resources/nbagent.app/Contents/MacOS/nbagent" : {
       "codeIdentifier" : "com.apple.nbagent",
       "type" : "anchorApple"
-    },
-    "/System/Library/PrivateFrameworks/Translation.framework/translationd" : {
-      "codeIdentifier" : "com.apple.translationd",
-      "type" : "anchorApple"
-    },
-    "/System/Volumes/Preboot/Cryptexes/App/usr/libexec/PasswordBreachAgent" : {
-      "codeIdentifier" : "com.apple.Safari.PasswordBreachAgent",
-      "type" : "anchorApple"
-    },
-    "/Termina" : {
-      "type" : "trustedAnchor"
     },
     "/usr/bin/curl" : {
       "codeIdentifier" : "com.apple.curl",
@@ -117,6 +107,11 @@
       "codeIdentifier" : "com.apple.ocspd",
       "type" : "anchorApple"
     },
+    "/Volumes/ProtonVPN/ProtonVPN.app/Contents/MacOS/ProtonVPN" : {
+      "authorIdentifier" : "J6S6Q257EK",
+      "codeIdentifier" : "ch.protonvpn.mac",
+      "type" : "trustedAnchor"
+    },
     "path.private/var/db/*/com.apple.MobileSoftwareUpdate.UpdateBrainService.16777233.575195.xpc/Contents/MacOS/com.apple.MobileSoftwareUpdate.UpdateBrainService" : {
       "codeIdentifier" : "com.apple.MobileSoftwareUpdate.UpdateBrainService",
       "type" : "anchorApple"
@@ -127,12 +122,13 @@
     }
   },
   "developerTeamNames" : {
+    "CKG9MXH72F" : "Mullvad VPN AB",
     "MLZF7K7B5R" : "Objective Development Software GmbH"
   },
   "factoryRuleSetVersion" : 420,
   "globalDefaults" : {
     "activeSilentMode" : 0,
-    "firstLaunchDate" : "2024-01-28T10:54:39Z",
+    "firstLaunchDate" : "2024-02-16T21:31:18Z",
     "globalLastShownWelcomeWindowVersion" : 2,
     "monitorMaxConnectionsInModel" : 50000,
     "networkFilterEnabled" : 1,
@@ -154,17 +150,28 @@
 
   ],
   "profiles" : {
-    "fluioJ" : {
+    "fyaggD" : {
+      "creationDate" : "2024-01-28T15:15:29Z",
+      "name" : "Apple Update"
+    },
+    "fyaggl" : {
       "creationDate" : "2024-01-28T15:15:11Z",
       "isActive" : true,
       "name" : "Apple Disabled"
-    },
-    "fluipl" : {
-      "creationDate" : "2024-01-28T15:15:29Z",
-      "name" : "Apple Update"
     }
   },
   "rules" : [
+    {
+      "action" : "deny",
+      "creationDate" : "2024-02-07T18:16:41Z",
+      "direction" : "incoming",
+      "factoryHelpText" : "#generated\naction: deny\ndate: 729022601.669935\ndirection: incoming\norigin: alert\npeer: fe80::f2af:85ff:fe8d:fbdc\nport: 0\nprocessPath: /usr/libexec/configd\nprotocol: 58\n",
+      "modificationDate" : "2024-02-07T18:16:41Z",
+      "origin" : "alert",
+      "owner" : "system",
+      "process" : "/usr/libexec/configd",
+      "remote" : "any"
+    },
     {
       "action" : "allow",
       "creationDate" : "2023-05-09T17:15:09Z",
@@ -274,13 +281,23 @@
     },
     {
       "action" : "allow",
-      "creationDate" : "2023-05-09T20:52:15Z",
-      "factoryHelpText" : "#generated\naction: allow\ndate: 705358335.064114\ndirection: outgoing\norigin: alert\npeer: sw-update.obdev.at\nport: 443\nprocessPath: /Applications/Little Snitch.app/Contents/Components/Little Snitch Software Update.app/Contents/MacOS/Little Snitch Software Update\nprotocol: 6\n",
-      "modificationDate" : "2023-05-09T20:52:15Z",
-      "origin" : "alert",
+      "creationDate" : "2024-02-08T18:19:16Z",
+      "factoryHelpText" : "#generated\naction: allow\ndate: 729022808.904639\ndirection: outgoing\norigin: network monitor\npeer: sw-update.obdev.at\nport: 0\nprocessPath: /Applications/Little Snitch.app/Contents/Components/Little Snitch Software Update.app/Contents/MacOS/Little Snitch Software Update\nprotocol: 0\n",
+      "modificationDate" : "2024-02-08T18:19:16Z",
+      "origin" : "monitor",
       "process" : "/Applications/Little Snitch.app/Contents/Components/Little Snitch Software Update.app/Contents/MacOS/Little Snitch Software Update",
-      "remote-domains" : "obdev.at",
+      "remote" : "any",
       "uid" : 501
+    },
+    {
+      "action" : "allow",
+      "creationDate" : "2024-02-16T21:32:58Z",
+      "factoryHelpText" : "#generated\naction: allow\ndate: 729811978.672928\ndirection: outgoing\norigin: alert\npeer: 194.127.199.245\nport: 1234\nprocessPath: /Applications/Mullvad VPN.app/Contents/Resources/mullvad-daemon\nprotocol: 6\n",
+      "modificationDate" : "2024-02-16T21:32:58Z",
+      "origin" : "alert",
+      "owner" : "system",
+      "process" : "/Applications/Mullvad VPN.app/Contents/Resources/mullvad-daemon",
+      "remote" : "any"
     },
     {
       "action" : "deny",
@@ -299,7 +316,7 @@
       "modificationDate" : "2023-05-09T17:22:33Z",
       "origin" : "alert",
       "process" : "/System/Applications/App Store.app/Contents/MacOS/App Store",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -310,7 +327,7 @@
       "notes" : "On May 9, 2023, App Store tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/App Store.app/Contents/MacOS/App Store",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -321,7 +338,7 @@
       "modificationDate" : "2023-05-09T17:23:38Z",
       "origin" : "alert",
       "process" : "/System/Applications/Books.app/Contents/MacOS/Books",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -332,7 +349,7 @@
       "notes" : "On May 9, 2023, Books tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Books.app/Contents/MacOS/Books",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -343,7 +360,7 @@
       "modificationDate" : "2023-05-09T17:20:57Z",
       "origin" : "alert",
       "process" : "/System/Applications/FaceTime.app/Contents/MacOS/FaceTime",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -354,7 +371,7 @@
       "notes" : "On May 9, 2023, FaceTime tried to establish a connection to init-p01md.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/FaceTime.app/Contents/MacOS/FaceTime",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -365,7 +382,7 @@
       "modificationDate" : "2023-05-09T17:24:17Z",
       "origin" : "alert",
       "process" : "/System/Applications/FindMy.app/Contents/MacOS/FindMy",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -376,7 +393,7 @@
       "notes" : "On May 9, 2023, Find My tried to establish a connection to fmipmobile.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/FindMy.app/Contents/MacOS/FindMy",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -387,7 +404,7 @@
       "modificationDate" : "2023-05-09T17:24:31Z",
       "origin" : "alert",
       "process" : "/System/Applications/Freeform.app/Contents/MacOS/Freeform",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -398,7 +415,7 @@
       "notes" : "On May 9, 2023, Freeform tried to establish a connection to configuration.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Freeform.app/Contents/MacOS/Freeform",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -409,7 +426,7 @@
       "modificationDate" : "2023-05-09T17:20:33Z",
       "origin" : "alert",
       "process" : "/System/Applications/Messages.app/Contents/MacOS/Messages",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -420,7 +437,7 @@
       "notes" : "On May 9, 2023, Messages tried to establish a connection to init.ess.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Messages.app/Contents/MacOS/Messages",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -431,7 +448,7 @@
       "modificationDate" : "2023-05-09T17:22:07Z",
       "origin" : "alert",
       "process" : "/System/Applications/Music.app/Contents/MacOS/Music",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -442,7 +459,7 @@
       "notes" : "On May 9, 2023, Music tried to establish a connection to init.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Music.app/Contents/MacOS/Music",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -453,7 +470,7 @@
       "modificationDate" : "2023-05-09T17:22:24Z",
       "origin" : "alert",
       "process" : "/System/Applications/News.app/Contents/MacOS/News",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -464,7 +481,7 @@
       "notes" : "On May 9, 2023, News tried to establish a connection to configuration.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/News.app/Contents/MacOS/News",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -475,7 +492,7 @@
       "notes" : "On May 9, 2023, NewsToday2 tried to establish a connection to c.apple.news. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/News.app/Contents/PlugIns/NewsToday2.appex/Contents/MacOS/NewsToday2",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -486,7 +503,7 @@
       "notes" : "On May 9, 2023, NewsToday2 tried to establish a connection to c.apple.news. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/News.app/Contents/PlugIns/NewsToday2.appex/Contents/MacOS/NewsToday2",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -497,7 +514,7 @@
       "modificationDate" : "2023-05-09T17:21:38Z",
       "origin" : "alert",
       "process" : "/System/Applications/Notes.app/Contents/MacOS/Notes",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -508,7 +525,7 @@
       "notes" : "On May 9, 2023, Notes tried to establish a connection to configuration.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Notes.app/Contents/MacOS/Notes",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -519,7 +536,7 @@
       "modificationDate" : "2023-05-09T17:22:16Z",
       "origin" : "alert",
       "process" : "/System/Applications/Podcasts.app/Contents/MacOS/Podcasts",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -530,7 +547,7 @@
       "notes" : "On May 9, 2023, Podcasts tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Podcasts.app/Contents/MacOS/Podcasts",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -541,7 +558,7 @@
       "modificationDate" : "2023-05-09T17:26:16Z",
       "origin" : "alert",
       "process" : "/System/Applications/Stocks.app/Contents/MacOS/Stocks",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -552,7 +569,7 @@
       "notes" : "On May 9, 2023, Stocks tried to establish a connection to gateway.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Stocks.app/Contents/MacOS/Stocks",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -563,7 +580,7 @@
       "modificationDate" : "2023-05-09T17:18:33Z",
       "origin" : "alert",
       "process" : "/System/Applications/Stocks.app/Contents/PlugIns/StocksWidget.appex/Contents/MacOS/StocksWidget",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -574,7 +591,7 @@
       "notes" : "On May 9, 2023, StocksWidget tried to establish a connection to stocks-data-service.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Stocks.app/Contents/PlugIns/StocksWidget.appex/Contents/MacOS/StocksWidget",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -585,7 +602,7 @@
       "modificationDate" : "2023-05-09T17:21:45Z",
       "origin" : "alert",
       "process" : "/System/Applications/TV.app/Contents/MacOS/TV",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -596,7 +613,7 @@
       "notes" : "On May 9, 2023, TV tried to establish a connection to init.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/TV.app/Contents/MacOS/TV",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -612,13 +629,70 @@
       "via" : "/usr/bin/curl"
     },
     {
+      "action" : "private",
+      "creationDate" : "2024-02-08T18:27:23Z",
+      "factoryHelpText" : "#generated\naction: hideFromMonitor\ndate: 729109522.000000\ndirection: outgoing\norigin: network monitor\npeer: github.com\nport: 0\nprocessPath: /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal\nprotocol: 0\nviaProcessPath: /Library/Developer/CommandLineTools/usr/libexec/git-core/git-remote-http\n",
+      "modificationDate" : "2024-02-08T18:27:23Z",
+      "origin" : "monitor",
+      "process" : "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal",
+      "remote" : "any",
+      "uid" : 501,
+      "via" : "/Library/Developer/CommandLineTools/usr/libexec/git-core/git-remote-http"
+    },
+    {
+      "action" : "allow",
+      "creationDate" : "2024-02-07T18:20:27Z",
+      "factoryHelpText" : "#generated\naction: allow\ndate: 729022827.002730\ndirection: outgoing\norigin: alert\npeer: github.com\nport: 443\nprocessPath: /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal\nprotocol: 6\nviaProcessPath: /Library/Developer/CommandLineTools/usr/libexec/git-core/git-remote-http\n",
+      "modificationDate" : "2024-02-07T18:20:27Z",
+      "origin" : "alert",
+      "process" : "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal",
+      "profile" : "fyaggl",
+      "remote-domains" : "github.com",
+      "uid" : 501,
+      "via" : "/Library/Developer/CommandLineTools/usr/libexec/git-core/git-remote-http"
+    },
+    {
+      "action" : "allow",
+      "creationDate" : "2024-02-08T18:20:10Z",
+      "factoryHelpText" : "#generated\naction: allow\ndate: 729109210.632706\ndirection: outgoing\norigin: alert\npeer: github.com\nport: 443\nprocessPath: /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal\nprotocol: 6\nviaProcessPath: /Library/Developer/CommandLineTools/usr/libexec/git-core/git-remote-http\n",
+      "modificationDate" : "2024-02-08T18:20:10Z",
+      "origin" : "alert",
+      "process" : "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal",
+      "profile" : "fyaggD",
+      "remote-domains" : "github.com",
+      "uid" : 501,
+      "via" : "/Library/Developer/CommandLineTools/usr/libexec/git-core/git-remote-http"
+    },
+    {
+      "action" : "allow",
+      "creationDate" : "2024-02-08T18:23:56Z",
+      "factoryHelpText" : "#generated\naction: allow\ndate: 729109436.594205\ndirection: outgoing\norigin: alert\npeer: proton.me\nport: 0\nprocessPath: /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal\nprotocol: 1\nviaProcessPath: /sbin/ping\n",
+      "modificationDate" : "2024-02-08T18:27:59Z",
+      "origin" : "frontend",
+      "owner" : "system",
+      "process" : "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal",
+      "remote-domains" : "proton.me",
+      "via" : "/sbin/ping"
+    },
+    {
+      "action" : "allow",
+      "creationDate" : "2024-02-16T21:32:43Z",
+      "factoryHelpText" : "#generated\naction: allow\ndate: 729811963.429276\ndirection: outgoing\norigin: alert\npeer: proton.me\nport: 0\nprocessPath: /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal\nprotocol: 1\nviaProcessPath: /sbin/ping\n",
+      "modificationDate" : "2024-02-16T21:32:43Z",
+      "origin" : "alert",
+      "process" : "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal",
+      "remote-domains" : "proton.me",
+      "uid" : 501,
+      "via" : "/sbin/ping"
+    },
+    {
       "action" : "deny",
       "creationDate" : "2023-05-09T17:26:41Z",
       "factoryHelpText" : "#generated\naction: deny\ndate: 705346001.447574\ndirection: outgoing\norigin: alert\npeer: bag.itunes.apple.com\nport: 443\nprocessPath: /System/Applications/Weather.app/Contents/MacOS/Weather\nprotocol: 6\n",
       "modificationDate" : "2023-05-09T17:26:41Z",
       "origin" : "alert",
       "process" : "/System/Applications/Weather.app/Contents/MacOS/Weather",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -629,7 +703,7 @@
       "notes" : "On May 9, 2023, Weather tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Weather.app/Contents/MacOS/Weather",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -640,7 +714,7 @@
       "modificationDate" : "2023-05-09T17:23:31Z",
       "origin" : "alert",
       "process" : "/System/Applications/Weather.app/Contents/PlugIns/WeatherWidget.appex/Contents/MacOS/WeatherWidget",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -651,7 +725,7 @@
       "notes" : "On May 9, 2023, WeatherWidget tried to establish a connection to weather-data.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Applications/Weather.app/Contents/PlugIns/WeatherWidget.appex/Contents/MacOS/WeatherWidget",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -691,7 +765,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "/System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdated",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -702,7 +776,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdated",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -712,7 +786,7 @@
       "modificationDate" : "2023-05-09T17:29:44Z",
       "origin" : "alert",
       "process" : "/System/Library/CoreServices/Spotlight.app/Contents/MacOS/Spotlight",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -723,7 +797,7 @@
       "notes" : "On May 9, 2023, Spotlight tried to establish a connection to apple-finance.query.yahoo.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/CoreServices/Spotlight.app/Contents/MacOS/Spotlight",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -734,7 +808,7 @@
       "modificationDate" : "2023-05-09T17:21:47Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AMPLibrary.framework/Versions/A/Support/AMPLibraryAgent",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -745,7 +819,7 @@
       "notes" : "On May 9, 2023, AMPLibraryAgent tried to establish a connection to init.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/AMPLibrary.framework/Versions/A/Support/AMPLibraryAgent",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -756,7 +830,7 @@
       "modificationDate" : "2023-05-09T17:31:45Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstoreagent",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -767,7 +841,7 @@
       "notes" : "On May 9, 2023, appstoreagent tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstoreagent",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -778,7 +852,7 @@
       "modificationDate" : "2023-05-09T17:56:12Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AppleMediaServices.framework/Versions/A/Resources/amsaccountsd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -789,7 +863,7 @@
       "notes" : "On May 9, 2023, amsaccountsd tried to establish a connection to sandbox.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/AppleMediaServices.framework/Versions/A/Resources/amsaccountsd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -800,7 +874,7 @@
       "modificationDate" : "2023-05-09T17:21:52Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AppleMediaServicesUI.framework/amsengagementd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -811,7 +885,7 @@
       "notes" : "On May 9, 2023, amsengagementd tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/AppleMediaServicesUI.framework/amsengagementd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -823,7 +897,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/ApplePushService.framework/apsd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -834,7 +908,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/ApplePushService.framework/apsd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -844,7 +918,7 @@
       "modificationDate" : "2023-05-09T17:29:39Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AskPermission.framework/Versions/A/Resources/askpermissiond",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -855,7 +929,7 @@
       "notes" : "On May 9, 2023, askpermissiond tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/AskPermission.framework/Versions/A/Resources/askpermissiond",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -867,7 +941,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -878,17 +952,16 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
       "action" : "deny",
-      "creationDate" : "2023-05-09T21:41:21Z",
-      "factoryHelpText" : "#generated\naction: deny\ndate: 705361281.378049\ndirection: outgoing\norigin: alert\npeer: lcdn-locator.apple.com\nport: 443\nprocessPath: /System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService\nprotocol: 6\n",
-      "modificationDate" : "2023-05-09T21:41:21Z",
+      "creationDate" : "2024-02-07T18:17:39Z",
+      "factoryHelpText" : "#generated\naction: deny\ndate: 729022659.741601\ndirection: outgoing\norigin: alert\npeer: lcdn-locator.apple.com\nport: 443\nprocessPath: /System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService\nprotocol: 6\n",
+      "modificationDate" : "2024-02-07T18:17:39Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService",
-      "profile" : "fluioJ",
       "remote" : "any",
       "uid" : 501
     },
@@ -899,7 +972,7 @@
       "modificationDate" : "2023-05-09T17:25:36Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AssistantServices.framework/Versions/A/Support/assistantd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -910,7 +983,7 @@
       "notes" : "On May 9, 2023, assistantd tried to establish a connection to guzzoni.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/AssistantServices.framework/Versions/A/Support/assistantd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -921,7 +994,7 @@
       "modificationDate" : "2023-05-09T17:31:15Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/Support/akd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -932,7 +1005,7 @@
       "notes" : "On May 9, 2023, akd tried to establish a connection to gsa.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/Support/akd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -943,7 +1016,7 @@
       "modificationDate" : "2023-05-09T17:23:40Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/BookLibraryCore.framework/Support/bookassetd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -954,7 +1027,7 @@
       "notes" : "On May 9, 2023, bookassetd tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/BookLibraryCore.framework/Support/bookassetd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -965,7 +1038,7 @@
       "modificationDate" : "2024-01-28T10:57:15Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/CallHistory.framework/Support/CallHistorySyncHelper",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -976,7 +1049,7 @@
       "modificationDate" : "2023-05-09T17:25:38Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -987,7 +1060,7 @@
       "notes" : "On May 9, 2023, cloudd tried to establish a connection to gateway.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -998,7 +1071,7 @@
       "modificationDate" : "2023-05-09T17:25:03Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/CoreParsec.framework/parsec-fbf",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1009,7 +1082,7 @@
       "notes" : "On May 9, 2023, parsec-fbf tried to establish a connection to fbs.smoot.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/CoreParsec.framework/parsec-fbf",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1020,7 +1093,7 @@
       "modificationDate" : "2023-05-09T17:56:10Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/CoreParsec.framework/parsecd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1031,7 +1104,7 @@
       "notes" : "On May 9, 2023, parsecd tried to establish a connection to api-glb-ausw2c.smoot.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/CoreParsec.framework/parsecd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1042,7 +1115,7 @@
       "modificationDate" : "2023-05-09T17:29:53Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/DataAccess.framework/Support/dataaccessd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1053,7 +1126,7 @@
       "notes" : "On May 9, 2023, dataaccessd tried to establish a connection to caldav.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/DataAccess.framework/Support/dataaccessd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1064,7 +1137,7 @@
       "modificationDate" : "2023-05-09T17:56:14Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/FamilyCircle.framework/Versions/A/Resources/familycircled",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1075,7 +1148,7 @@
       "notes" : "On May 9, 2023, familycircled tried to establish a connection to setup.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/FamilyCircle.framework/Versions/A/Resources/familycircled",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1086,7 +1159,7 @@
       "modificationDate" : "2023-05-09T17:23:51Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/GameCenterFoundation.framework/Versions/A/gamed",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1097,7 +1170,7 @@
       "notes" : "On May 9, 2023, gamed tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/GameCenterFoundation.framework/Versions/A/gamed",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1109,7 +1182,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -1120,7 +1193,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1130,7 +1203,7 @@
       "modificationDate" : "2023-05-09T17:20:47Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1141,7 +1214,7 @@
       "notes" : "On May 9, 2023, com.apple.geod tried to establish a connection to configuration.ls.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1152,7 +1225,7 @@
       "modificationDate" : "2023-05-09T20:47:25Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/HelpData.framework/Versions/A/Resources/helpd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1163,7 +1236,7 @@
       "notes" : "On May 9, 2023, helpd tried to establish a connection to cds.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/HelpData.framework/Versions/A/Resources/helpd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1174,7 +1247,7 @@
       "modificationDate" : "2023-05-09T17:30:06Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/IDS.framework/identityservicesd.app/Contents/MacOS/identityservicesd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1185,7 +1258,7 @@
       "notes" : "On May 9, 2023, identityservicesd tried to establish a connection to pds-init.ess.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/IDS.framework/identityservicesd.app/Contents/MacOS/identityservicesd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1197,7 +1270,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1208,7 +1281,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -1218,7 +1291,7 @@
       "modificationDate" : "2023-05-09T21:41:19Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/NewDeviceOutreach.framework/ndoagent",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1229,7 +1302,7 @@
       "notes" : "On May 9, 2023, ndoagent tried to establish a connection to cdsassets.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/NewDeviceOutreach.framework/ndoagent",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1240,7 +1313,7 @@
       "modificationDate" : "2023-05-09T17:22:25Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/NewsDaemon.framework/newsd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1251,7 +1324,7 @@
       "notes" : "On May 9, 2023, newsd tried to establish a connection to c.apple.news. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/NewsDaemon.framework/newsd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1262,7 +1335,7 @@
       "modificationDate" : "2024-01-28T11:05:23Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/Noticeboard.framework/Versions/A/Resources/nbagent.app/Contents/MacOS/nbagent",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1273,7 +1346,7 @@
       "modificationDate" : "2023-05-09T17:29:51Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/PassKitCore.framework/passd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1284,7 +1357,7 @@
       "notes" : "On May 9, 2023, passd tried to establish a connection to smp-device-content.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/PassKitCore.framework/passd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1295,7 +1368,7 @@
       "modificationDate" : "2023-05-09T17:27:26Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/Versions/A/com.apple.Safari.SafeBrowsing.Service",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1306,7 +1379,7 @@
       "notes" : "On May 9, 2023, com.apple.Safari.SafeBrowsing.Service tried to establish a connection to mask.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/Versions/A/com.apple.Safari.SafeBrowsing.Service",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1327,7 +1400,7 @@
       "modificationDate" : "2023-05-09T17:21:50Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/WatchListKit.framework/Support/watchlistd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1338,7 +1411,7 @@
       "notes" : "On May 9, 2023, watchlistd tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/WatchListKit.framework/Support/watchlistd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1349,7 +1422,7 @@
       "modificationDate" : "2023-05-09T17:29:46Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/WeatherDaemon.framework/weatherd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1360,7 +1433,7 @@
       "notes" : "On May 9, 2023, weatherd tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/WeatherDaemon.framework/weatherd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1371,7 +1444,7 @@
       "modificationDate" : "2023-05-09T17:28:39Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/iCloudNotification.framework/iCloudNotificationAgent",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1382,7 +1455,7 @@
       "notes" : "On May 9, 2023, iCloudNotificationAgent tried to establish a connection to setup.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/iCloudNotification.framework/iCloudNotificationAgent",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1393,7 +1466,7 @@
       "modificationDate" : "2023-05-09T17:21:56Z",
       "origin" : "alert",
       "process" : "/System/Library/PrivateFrameworks/iTunesCloud.framework/Support/itunescloudd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1404,7 +1477,7 @@
       "notes" : "On May 9, 2023, itunescloudd tried to establish a connection to init.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/System/Library/PrivateFrameworks/iTunesCloud.framework/Support/itunescloudd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1415,7 +1488,28 @@
       "modificationDate" : "2024-01-28T10:57:28Z",
       "origin" : "alert",
       "process" : "/System/Volumes/Preboot/Cryptexes/App/usr/libexec/PasswordBreachAgent",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
+      "remote" : "any",
+      "uid" : 501
+    },
+    {
+      "action" : "deny",
+      "creationDate" : "2024-02-07T18:16:48Z",
+      "factoryHelpText" : "#generated\naction: deny\ndate: 729022608.944236\ndirection: outgoing\norigin: alert\npeer: configuration.apple.com\nport: 443\nprocessPath: /System/Volumes/Preboot/Cryptexes/App/usr/libexec/PasswordBreachAgent\nprotocol: 6\n",
+      "modificationDate" : "2024-02-07T18:16:48Z",
+      "origin" : "alert",
+      "process" : "/System/Volumes/Preboot/Cryptexes/App/usr/libexec/PasswordBreachAgent",
+      "profile" : "fyaggl",
+      "remote" : "any",
+      "uid" : 501
+    },
+    {
+      "action" : "allow",
+      "creationDate" : "2024-02-16T21:41:59Z",
+      "factoryHelpText" : "#generated\naction: allow\ndate: 729812519.032356\ndirection: outgoing\norigin: alert\npeer: vpn-api.proton.me\nport: 443\nprocessPath: /Volumes/ProtonVPN/ProtonVPN.app/Contents/MacOS/ProtonVPN\nprotocol: 6\n",
+      "modificationDate" : "2024-02-16T21:41:59Z",
+      "origin" : "alert",
+      "process" : "/Volumes/ProtonVPN/ProtonVPN.app/Contents/MacOS/ProtonVPN",
       "remote" : "any",
       "uid" : 501
     },
@@ -1441,7 +1535,7 @@
       "modificationDate" : "2023-05-09T17:29:42Z",
       "origin" : "alert",
       "process" : "/usr/libexec/adprivacyd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1452,7 +1546,7 @@
       "notes" : "On May 9, 2023, adprivacyd tried to establish a connection to bag.itunes.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/adprivacyd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1490,6 +1584,28 @@
       "remote" : "bpf"
     },
     {
+      "action" : "deny",
+      "creationDate" : "2024-02-07T18:16:46Z",
+      "factoryHelpText" : "#generated\naction: deny\ndate: 729022606.429155\ndirection: outgoing\norigin: alert\npeer: init.itunes.apple.com\nport: 443\nprocessPath: /usr/libexec/mobileactivationd\nprotocol: 6\n",
+      "modificationDate" : "2024-02-07T18:16:46Z",
+      "origin" : "alert",
+      "owner" : "system",
+      "process" : "/usr/libexec/mobileactivationd",
+      "profile" : "fyaggl",
+      "remote" : "any"
+    },
+    {
+      "action" : "deny",
+      "creationDate" : "2024-02-07T18:19:27Z",
+      "factoryHelpText" : "#generated\naction: deny\ndate: 729022767.393124\ndirection: outgoing\norigin: alert\npeer: init.itunes.apple.com\nport: 443\nprocessPath: /usr/libexec/mobileactivationd\nprotocol: 6\n",
+      "modificationDate" : "2024-02-07T18:19:27Z",
+      "origin" : "alert",
+      "owner" : "system",
+      "process" : "/usr/libexec/mobileactivationd",
+      "profile" : "fyaggD",
+      "remote" : "any"
+    },
+    {
       "action" : "allow",
       "creationDate" : "2023-05-09T20:48:51Z",
       "modificationDate" : "2023-05-09T21:09:43Z",
@@ -1497,7 +1613,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "/usr/libexec/mobileassetd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1508,7 +1624,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/usr/libexec/mobileassetd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -1518,7 +1634,7 @@
       "modificationDate" : "2023-05-09T20:42:09Z",
       "origin" : "alert",
       "process" : "/usr/libexec/networkserviceproxy",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1529,7 +1645,7 @@
       "notes" : "On May 9, 2023, networkserviceproxy tried to establish a connection to mask-api.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/networkserviceproxy",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1541,7 +1657,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/usr/libexec/nsurlsessiond",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1551,7 +1667,7 @@
       "modificationDate" : "2023-05-09T21:24:37Z",
       "origin" : "alert",
       "process" : "/usr/libexec/nsurlsessiond",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1563,7 +1679,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/usr/libexec/nsurlsessiond",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -1573,7 +1689,7 @@
       "modificationDate" : "2023-05-09T17:23:11Z",
       "origin" : "alert",
       "process" : "/usr/libexec/nsurlsessiond",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1584,7 +1700,7 @@
       "modificationDate" : "2023-05-09T17:31:48Z",
       "origin" : "alert",
       "process" : "/usr/libexec/promotedcontentd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1595,7 +1711,7 @@
       "notes" : "On May 9, 2023, promotedcontentd tried to establish a connection to iadsdk.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/promotedcontentd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1606,7 +1722,7 @@
       "modificationDate" : "2023-05-09T20:42:12Z",
       "origin" : "alert",
       "process" : "/usr/libexec/remindd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1617,7 +1733,7 @@
       "notes" : "On May 9, 2023, remindd tried to establish a connection to configuration.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/remindd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1629,7 +1745,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/usr/libexec/rtcreportingd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1639,7 +1755,7 @@
       "modificationDate" : "2023-05-09T17:24:19Z",
       "origin" : "alert",
       "process" : "/usr/libexec/searchpartyuseragent",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1650,7 +1766,7 @@
       "notes" : "On May 9, 2023, searchpartyuseragent tried to establish a connection to gateway.icloud.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/searchpartyuseragent",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1661,7 +1777,7 @@
       "modificationDate" : "2023-05-09T17:30:08Z",
       "origin" : "alert",
       "process" : "/usr/libexec/studentd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1672,7 +1788,7 @@
       "notes" : "On May 9, 2023, studentd tried to establish a connection to www.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/studentd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1684,7 +1800,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/usr/libexec/syspolicyd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -1695,7 +1811,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "/usr/libexec/syspolicyd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1754,7 +1870,7 @@
       "modificationDate" : "2023-05-09T17:58:50Z",
       "origin" : "alert",
       "process" : "/usr/libexec/tipsd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1765,7 +1881,7 @@
       "notes" : "On May 9, 2023, tipsd tried to establish a connection to ipcdn.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/tipsd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1776,7 +1892,7 @@
       "modificationDate" : "2023-05-09T17:56:08Z",
       "origin" : "alert",
       "process" : "/usr/libexec/transparencyd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1787,7 +1903,7 @@
       "notes" : "On May 9, 2023, transparencyd tried to establish a connection to kt-prod.ess.apple.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/transparencyd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1823,7 +1939,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "/usr/libexec/trustd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -1834,7 +1950,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "/usr/libexec/trustd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1844,7 +1960,7 @@
       "modificationDate" : "2023-05-09T17:20:23Z",
       "origin" : "alert",
       "process" : "/usr/libexec/trustd",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any",
       "uid" : 501
     },
@@ -1855,7 +1971,7 @@
       "notes" : "On May 9, 2023, trustd tried to establish a connection to ocsp.digicert.com. The request was denied via connection alert.",
       "origin" : "frontend",
       "process" : "/usr/libexec/trustd",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any",
       "uid" : 501
     },
@@ -1926,7 +2042,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "path.private/var/db/*/com.apple.MobileSoftwareUpdate.UpdateBrainService.16777233.575195.xpc/Contents/MacOS/com.apple.MobileSoftwareUpdate.UpdateBrainService",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1937,7 +2053,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "path.private/var/db/*/com.apple.MobileSoftwareUpdate.UpdateBrainService.16777233.575195.xpc/Contents/MacOS/com.apple.MobileSoftwareUpdate.UpdateBrainService",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
@@ -1948,7 +2064,7 @@
       "origin" : "alert",
       "owner" : "system",
       "process" : "path.private/var/db/*/com.apple.NRD.UpdateBrainService.16777233.574858.xpc/Contents/MacOS/com.apple.NRD.UpdateBrainService",
-      "profile" : "fluipl",
+      "profile" : "fyaggD",
       "remote" : "any"
     },
     {
@@ -1959,7 +2075,7 @@
       "origin" : "frontend",
       "owner" : "system",
       "process" : "path.private/var/db/*/com.apple.NRD.UpdateBrainService.16777233.574858.xpc/Contents/MacOS/com.apple.NRD.UpdateBrainService",
-      "profile" : "fluioJ",
+      "profile" : "fyaggl",
       "remote" : "any"
     },
     {
