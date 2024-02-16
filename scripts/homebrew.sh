@@ -14,9 +14,10 @@ read
 
 echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
-echo 'export PATH=/opt/homebrew/bin:$PATH' >> ~/.zshrc
-source .zshrc
-
+rm /Users/$USER/.zshrc
+touch /Users/$USER/.zshrc
+echo 'export PATH=/opt/homebrew/bin:$PATH' >> /Users/$USER/.zshrc
+source /Users/$USER/.zshrc
 
 # Switch to Apple Disabled Profile
 echo -e "\n${RED}Make sure to active the 'Apple Disabled' Profile for the next steps.${NC}"
