@@ -31,6 +31,8 @@ function cleanLook() {
             defaults write com.apple.dock mineffect "scale"
             defaults write com.apple.dock minimize-to-application -bool true
             defaults write com.apple.dock launchanim -bool false
+            # Dont reorder spaces on use
+            defaults write com.apple.dock "mru-spaces" -bool "false"
 
             # Background
             echo -e "\nChanging Background..."
@@ -69,6 +71,10 @@ function cleanLook() {
             defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
             # Do not show removable media on the desktop
             defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+            # Do not show connected servers on the desktop
+            defaults write com.apple.finder "ShowMountedServersOnDesktop" -bool "false"
+            # Hide all Desktop Icons
+            defaults write com.apple.finder "CreateDesktop" -bool "false"
             # Remove Recent Folder
             defaults delete com.apple.finder FXRecentFolders
             # Show the path bar
@@ -100,10 +106,21 @@ function cleanLook() {
             defaults write com.apple.finder FXICloudDriveFirstSyncDownComplete -bool false
             # Set iCloud Drive login status to false
             defaults write com.apple.finder FXICloudLoggedIn -bool false
+            # Set Search Scope to Global
+            defaults write com.apple.finder "FXDefaultSearchScope" -string "SCev"
+            # Save to Homefolder by default
+            defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool "false"
+
+            # Text Edit
+            # Set Document type to txt
+            defaults write com.apple.TextEdit "RichText" -bool "false"
+
             # Restart Finder
             killall Finder
             # Restart Dock
             killall Dock
+            # Restart Text Edit
+            killall TextEdit
 
             valid_choice=true
 
