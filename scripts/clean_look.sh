@@ -8,12 +8,9 @@ function cleanLook() {
     local valid_choice=false
     prompt="Do you want to clean up the look? You can see pictures of the after look in the GitHub repo."
 
-    # Display prompt and get user input
-    echo -e "$prompt"
-
     while [ "$valid_choice" == false ]; do
         # Prompt for user input
-        read -rp "Do you want to clean up the look? (y/n): " choice
+        read -rp "$prompt (y/n): " choice
 
         if [[ "$choice" =~ ^[Yy]$ || -z "$choice" ]]; then
             # Run the specified commands
@@ -38,7 +35,7 @@ function cleanLook() {
             # Background
             echo -e "\nChanging Background..."
             # Display available colors
-                       echo "lease choose a background color:"
+                       echo "Please choose a background color:"
                        select color in Yellow "Turquoise Green" Teal Stone "Space Gray" "Space Gray Pro" "Soft Pink" Silver "Rose Gold" "Red Orange" Plum Ocher Gold "Gold 2" "Electric Blue" "Dusty Rose" Cyan "Blue Violet" Black
                        do
                            case $color in
