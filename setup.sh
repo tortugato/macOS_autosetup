@@ -46,7 +46,8 @@ function printSectionHeading() {
 clear
 
 # Check internet and exit if available
-sudo ./scripts/check_internet.sh || exit 1
+printSectionHeading "Turning Internet Connection off"
+sudo ./scripts/check_internet.sh
 
 # Check FileVault
 sudo ./scripts/check_filevault.sh
@@ -80,9 +81,6 @@ printSectionHeading "Connect to VPN"
 # Install homebrew and some neccessary packages
 printSectionHeading "Homebrew"
 ./scripts/homebrew.sh
-
-# Clean Look
-#runFunctions ...
 
 # Reboot on finish
 printSectionHeading "Script Finished!"
