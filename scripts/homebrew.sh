@@ -14,8 +14,6 @@ read
 
 echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
-rm /Users/$USER/.zshrc
-touch /Users/$USER/.zshrc
 echo 'export PATH=/opt/homebrew/bin:$PATH' >> /Users/$USER/.zshrc
 source /Users/$USER/.zshrc
 
