@@ -57,15 +57,6 @@ function installScripts(){
     [ -e '/usr/local/sbin/spoof.sh' ]
     "
 
-    installLogoutHook="
-    cp '$main_dir/installscripts/spoof-hook.sh' '/usr/local/sbin/spoof-hook.sh' &&
-    chmod +x /usr/local/sbin/spoof-hook.sh &&
-    defaults delete com.apple.loginwindow LogoutHook &&
-    defaults write com.apple.loginwindow LogoutHook '/usr/local/sbin/spoof-hook.sh' &&
-    defaults read com.apple.loginwindow &&
-    [ -e '/usr/local/sbin/spoof.sh' ]
-    "
-
     installUpdateScript="
     mkdir -p ~/.local/bin &&
     cp '$main_dir/installscripts/update' ~/.local/bin/ &&
@@ -77,7 +68,6 @@ function installScripts(){
     installScript "Installing Cleanup Script" "$installCleanupScript"
     installScript "Installing App Cleaner Script" "$installAppCleanerScript"
     installScript "Installing Mac Address Randomizer" "$installMacaddressRandomizer"
-    installScript "Installing Logout Hook" "$installLogoutHook"
     installScript "Installing Update Script" "$installUpdateScript"
 }
 
