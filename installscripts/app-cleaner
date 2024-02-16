@@ -133,7 +133,7 @@ if [ "$answer" = "y" ]; then
 
 
   # Remove the application using Homebrew
-  brew remove --zap $app_name_without_extension_and_together
+  brew remove $app_name_without_extension_and_together
 
   # Remove Cask Caskroom entry
   rm -rf /opt/homebrew/Caskroom/$app_name_without_extension_and_together
