@@ -14,7 +14,7 @@ function installScripts(){
     sleep 1
     echo -e "${BOLD}Installing Scripts...${NC}"
 
-    function installScripts() {
+    function installScript() {
         local success=true
         local prompt="$1"
         local command_to_run="$2"
@@ -36,11 +36,13 @@ function installScripts(){
 
     installCleanupScript="
     mkdir -p /usr/local/bin &&
-    cp '$main_dir/installscripts/cleanup' '/usr/local/bin/cleanup'
+    cp '$main_dir/installscripts/cleanup' '/usr/local/bin/cleanup' &&
+    [ -e '/usr/local/bin/cleanup' ]
     "
 
     installAppCleanerScript="
-    cp '$main_dir/installscripts/app-cleaner' '/usr/local/bin/app-cleaner'
+    cp '$main_dir/installscripts/app-cleaner' '/usr/local/bin/app-cleaner' &&
+    [ -e '/usr/local/bin/app-cleaner' ]
     "
 
     installMacaddressRandomizer="
@@ -51,21 +53,32 @@ function installScripts(){
     source ~/.zshrc &&
     cp '$main_dir/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
     chmod +x /usr/local/sbin/spoof.sh &&
-    cp '$main_dir/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist'
+    cp '$main_dir/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist' &&
+    [ -e '/usr/local/sbin/spoof.sh' ]
     "
 
     installLogoutHook="
     cp '$main_dir/installscripts/spoof-hook.sh' '/usr/local/sbin/spoof-hook.sh' &&
-    chmod +x /usr/local/sbin/spoof-hook.sh
-    defaults delete com.apple.loginwindow LogoutHook
-    defaults write com.apple.loginwindow LogoutHook '/usr/local/sbin/spoof-hook.sh'
-    defaults read com.apple.loginwindow
+    chmod +x /usr/local/sbin/spoof-hook.sh &&
+    defaults delete com.apple.loginwindow LogoutHook &&
+    defaults write com.apple.loginwindow LogoutHook '/usr/local/sbin/spoof-hook.sh' &&
+    defaults read com.apple.loginwindow &&
+    [ -e '/usr/local/sbin/spoof.sh' ]
     "
 
-    installScripts "Installing Cleanup Script" "$installCleanupScript"
-    installScripts "Installing App Cleaner Script" "$installAppCleanerScript"
-    installScripts "Installing Mac Address Randomizer" "$installMacaddressRandomizer"
-    installScripts "Installing Logout Hook" "$installLogoutHook"
+    installUpdateScript="
+    mkdir -p ~/.local/bin &&
+    cp '$main_dir/installscripts/update' ~/.local/bin/ &&
+    chmod +x ~/.local/bin/update &&
+    echo 'export PATH=$PATH:/$HOME/.local/bin' >> ~/.zshrc &&
+    ( [ -e ~/.local/bin/update ] )
+    "
+
+    installScript "Installing Cleanup Script" "$installCleanupScript"
+    installScript "Installing App Cleaner Script" "$installAppCleanerScript"
+    installScript "Installing Mac Address Randomizer" "$installMacaddressRandomizer"
+    installScript "Installing Logout Hook" "$installLogoutHook"
+    installScript "Installing Update Script" "$installUpdateScript"
 }
 
 installScripts
