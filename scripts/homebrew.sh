@@ -16,27 +16,21 @@ read
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
-eval $(/opt/homebrew/bin/brew shellenv)
-sudo chown $USER /Users/$USER/.zshrc
-echo 'export PATH=/opt/homebrew/bin:$PATH' >> /Users/$USER/.zshrc
-source /Users/$USER/.zshrc
-
 # Switch to Apple Disabled Profile
 echo -e "\n${RED}Make sure to active the 'Apple Disabled' Profile for the next steps.${NC}"
 echo -e "\nHit ${GREEN}ENTER${NC} when your Profile is switched."
 read
 # Turn Analytics off
 echo -e "\n${BOLD}Turning Brew Analytics off${NC}"
-brew analytics off
+/opt/homebrew/bin/brew analytics off
 
 # Update brew
 echo -e "\n${BOLD}Updating Brew${NC}"
-brew update
+/opt/homebrew/bin/brew update
 
 # Install important programs
 echo -e "\n${BOLD}Installing the Security Brewfile${NC}"
-brew bundle --file "$main_dir/config/brewfiles/Brewfile_security"
+/opt/homebrew/bin/brew bundle --file "$main_dir/config/brewfiles/Brewfile_security"
 
 
 # Ask to install custom brew file
@@ -66,7 +60,7 @@ read -r choice
 if [[ "$choice" == "y" || "$choice" == "Y" || -z "$choice" ]]; then
     # Run the specified command
     checkBrewfile
-    brew bundle --file "$main_dir/config/brewfiles/Brewfile_custom"
+    /opt/homebrew/bin/brew bundle --file "$main_dir/config/brewfiles/Brewfile_custom"
 
     clear
     echo "Installation completed."
