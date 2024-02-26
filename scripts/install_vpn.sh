@@ -21,12 +21,12 @@ function installVpn(){
         case $vpn_choice in
             "ProtonVPN")
                 vpn_name="ProtonVPN"
-                vpn_file="$main_dir/vpn_and_firewall/vpn.dmg"
+                vpn_file="$main_dir/config/vpn_and_firewall/vpn.dmg"
                 break
                 ;;
             "Mullvad")
                 vpn_name="Mullvad VPN"
-                vpn_file="$main_dir/vpn_and_firewall/vpn.pkg"
+                vpn_file="$main_dir/config/vpn_and_firewall/vpn.pkg"
                 break
                 ;;
             *)

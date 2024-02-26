@@ -15,7 +15,7 @@ function installFirewall(){
 
     # Check if firewall.dmg file is in folder
     while true; do
-        if [ ! -e "$main_dir/vpn_and_firewall/firewall.dmg" ]; then
+        if [ ! -e "$main_dir/config/vpn_and_firewall/firewall.dmg" ]; then
             clear
             echo -e "${RED}Not all files required for this setup are in $main_dir/vpn_and_firewall/.${NC}"
             echo "Please double-check to include the firewall file. (firewall.dmg)"
