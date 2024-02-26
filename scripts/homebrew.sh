@@ -1,5 +1,6 @@
 # Brew
 # Install homebrew
+BOLD='\033[1m'
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
@@ -26,13 +27,15 @@ echo -e "\n${RED}Make sure to active the 'Apple Disabled' Profile for the next s
 echo -e "\nHit ${GREEN}ENTER${NC} when your Profile is switched."
 read
 # Turn Analytics off
+echo -e "\n${BOLD}Turning Brew Analytics off${NC}"
 brew analytics off
 
 # Update brew
+echo -e "\n${BOLD}Updating Brew${NC}"
 brew update
 
 # Install important programs
-echo $main_dir
+echo -e "\n${BOLD}Installing the Security Brewfile${NC}"
 brew bundle --file "$main_dir/config/brewfiles/Brewfile_security"
 
 
