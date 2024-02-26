@@ -87,6 +87,9 @@ printSectionHeading "Homebrew"
 printSectionHeading "Cleaning up Look"
 ./scripts/clean_look.sh
 
+# Install Dotfiles
+runFunctions "Do you want to install dotiles?" "./scripts/install_dotfiles.sh" "Install Dotfiles"
+
 # Reboot on finish
 printSectionHeading "Script Finished!"
 sudo ./scripts/reboot_on_finish.sh
