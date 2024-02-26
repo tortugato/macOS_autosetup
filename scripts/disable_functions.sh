@@ -5,9 +5,6 @@ BOLD='\033[1m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-# Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(realpath "$0")")")
-
 # Remove unneccessary features
 function disableFeatures() {
     echo -e "We will disable a few unneccessary features. \nYou will be asked if you want a feature to be disabled."
