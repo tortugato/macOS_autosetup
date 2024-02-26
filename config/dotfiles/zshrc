@@ -1,0 +1,28 @@
+clear
+
+
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export PATH=$PATH:/usr/local/sbin
+export PATH="$PATH:/$HOME/.local/bin"
+export PATH=/opt/homebrew/bin:$PATH
+
+# Specify brew installation path to be local
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications --caskroom=/usr/local/Caskroom"
+
+# Changing "ls" to "eza"
+alias ls='eza -al --color=always --group-directories-first' # my preferred listing
+alias la='eza -a --color=always --group-directories-first'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first'  # long format
+alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias l.='eza -a | egrep "^\."'
+
+# confirm before overwriting something
+alias mv='mv -i'
+alias rm='rm -i'
+
+
+
+
+
+
+

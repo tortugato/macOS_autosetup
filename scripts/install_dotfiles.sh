@@ -9,7 +9,7 @@ NC='\033[0m'
 # Get the path for the script directory
 main_dir=$(dirname "$(dirname "$(realpath "$0")")")
 dest_dir="/Users/$USER/.config/"
-
+mkdir "/Users/$USER/.config/"
 # Cleanup Script Installation
 function installDotfiles(){
 
@@ -30,13 +30,20 @@ function installDotfiles(){
 
         # Check if the item should be excluded
         if [[ ! " ${exclude_patterns[@]} " =~ " $base_name " ]]; then
-            # Copy files and directories to the destination
-            cp -r "$item" "$dest_dir"
 
-            # Check for errors
-            if [ $? -ne 0 ]; then
-                echo "${RED}Error copying $item to $dest_dir${NC}"
-                success=false
+            # Check if the file is the zshrc
+            if [ "$base_name" = "zshrc" ]; then
+                cp "$main_dir/config/dotfiles/zshrc" ~/.zshrc
+                source ~/.zshrc
+            else
+            # Copy files and directories to the destination
+                cp -r "$item" "$dest_dir"
+
+                # Check for errors
+                if [ $? -ne 0 ]; then
+                    echo "${RED}Error copying $item to $dest_dir${NC}"
+                    success=false
+                fi
             fi
         fi
     done
