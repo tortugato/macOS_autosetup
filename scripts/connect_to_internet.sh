@@ -5,9 +5,6 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-# Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(realpath "$0")")")
-
 # Turn on network connection
 function turnNetworkOn() {
     echo -e "${GREEN}You will now be able to turn your internet connection on. \nPlease connect to Wi-Fi or Ethernet now.${NC}"
