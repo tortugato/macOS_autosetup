@@ -1,0 +1,41 @@
+#!/bin/bash
+
+rm -f ~/.bash_history
+rm -f ~/.zsh_history
+rm ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
+sudo rm -rf /Library/Logs/*
+rm ~/.material_logs/*
+sudo rm -rf /Library/Caches/*
+rm -rf ~/Library/Containers/com.apple.mail/Data/Library/Logs/Mail/*
+sudo rm -rf /var/audit/*
+sudo rm -rf /private/var/audit/*
+sudo rm -rf ~/Library/Logs/*
+sudo rm -fv /System/Library/LaunchDaemons/com.apple.periodic-*.plist
+sudo rm -rf /var/db/receipts/*
+sudo rm -vf /Library/Receipts/InstallHistory.plist
+sudo rm -rf /private/var/db/diagnostics/*
+sudo rm -rf /var/db/diagnostics/*
+sudo rm -rf /private/var/db/uuidtext/
+sudo rm -rf /var/db/uuidtext/
+sudo rm -rf /private/var/log/asl/*
+sudo rm -rf /var/log/asl/*
+sudo rm -fv /var/log/asl.log
+sudo rm -fv /var/log/asl.db
+sudo rm -fv /var/log/install.log
+sudo rm -rf /var/log/*
+sudo rm -rf /Library/Caches/* &>/dev/null
+sudo rm -rf /System/Library/Caches/* &>/dev/null
+sudo rm -rf ~/Library/Caches/* &>/dev/null
+sudo rm -rf /var/spool/cups/c0*
+sudo rm -rf /var/spool/cups/tmp/*
+sudo rm -rf /var/spool/cups/cache/job.cache*
+sudo rm -rf ~/.Trash/* &>/dev/null
+rm -rf ~/Library/Developer/Xcode/DerivedData/* &>/dev/null
+rm -rf ~/Library/Developer/Xcode/Archives/* &>/dev/null
+rm -rf ~/Library/Developer/Xcode/iOS Device Logs/* &>/dev/null
+sudo dscacheutil -flushcache
+sudo killall -HUP mDNSResponder
+sudo purge
+brew autoremove
+brew cleanup
+clear
