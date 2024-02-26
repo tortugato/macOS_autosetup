@@ -72,11 +72,16 @@ function setSettings(){
     )
 
     disableAutomaticUpdates=(
-    "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool false"
-    "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool false"
-    "defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool false"
-    "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool false"
-    "defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool false"
+        "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool false"
+        "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool false"
+        "defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool false"
+        "defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool false"
+        "defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool false"
+    )
+
+    disableAutomaticBluetoothSearch=(
+        "defaults write /Library/Preferences/com.apple.Bluetooth BluetoothAutoSeekKeyboard -bool false"
+        "defaults write /Library/Preferences/com.apple.Bluetooth BluetoothAutoSeekPointingDevice -bool false"
     )
 
     # Run the configureSettings function for each set of commands
@@ -89,6 +94,7 @@ function setSettings(){
     configureSettings "Disable Advertising" "${disableAdvertising[@]}"
     configureSettings "Disable Metadata Files" "${disableMetadataFiles[@]}"
     configureSettings "Disable Automatic Updates" "${disableAutomaticUpdates[@]}"
+    configureSettings "Disable Automatic Bluetooth Keyboard/Mouse Search" "${disableAutomaticBluetoothSearch[@]}"
 
 }
 
