@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set colors to the accroding variables
+# Set colors to the according variables
 BOLD='\033[1m'
 GREEN='\033[0;32m'
 RED='\033[0;31m'
