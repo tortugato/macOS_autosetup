@@ -49,13 +49,13 @@ clear
 printSectionHeading "Turning Internet Connection off"
 sudo ./scripts/check_internet.sh
 
-# Check FileVault
-printSectionHeading "Turning FileVault On"
-sudo ./scripts/check_filevault.sh
-
 # Introduction
 printSectionHeading "Introduction"
 ./scripts/introduction.sh
+
+# Check FileVault
+printSectionHeading "Turning FileVault On"
+sudo ./scripts/check_filevault.sh
 
 # Install Scripts
 printSectionHeading "Installing Scripts"
