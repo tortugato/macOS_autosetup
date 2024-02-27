@@ -1,4 +1,3 @@
-
 # macOS_autosetup - Privacy and Security
 ![Status](https://img.shields.io/badge/status-Work_in_Progress-yellow)
 ![GitHub Tag](https://img.shields.io/github/v/tag/tortugato/macOS_autosetup)
@@ -57,18 +56,18 @@ I recommend to do the initial setup of your macOS system as following:
     **Make sure to move those to the corresponding directories before starting the script.**
 
 
-3. Go to the `macOS_autosetup` directory
+2. Go to the `macOS_autosetup` directory
     ```bash
     cd /DirectoryOfExternalVolume/macOS_autosetup
     ```
 
-4. Start the `setup.sh` script
+3. Start the `setup.sh` script
     ```bash
     ./script.sh
     ```
 
-5. Follow the instructions
-6. Before and after if you choose the "Clean Look" option\
+4. Follow the instructions
+5. Before and after if you choose the "Clean Look" option\
 ![Before](https://github.com/tortugato/macOS_autosetup/blob/main/img/original.jpg) ![After](https://github.com/tortugato/macOS_autosetup/blob/main/img/clean.jpg)
 
 ## After Installation
@@ -126,3 +125,20 @@ There are a few settings that still need to be changed manually. This includes:
 The [app-cleaner](https://github.com/sunknudsen/privacy-guides/tree/master/how-to-clean-uninstall-macos-apps-using-appcleaner-open-source-alternative) and [spoof.sh](https://github.com/sunknudsen/privacy-guides/tree/master/how-to-spoof-mac-address-and-hostname-automatically-at-boot-on-macos) script are modified versions of his.\
 **App-cleaner**: I added the removal of brew files and removed the saving of bill of material logs.\
 **Spoof.sh**: Instead of adding a random name infront of the Hostname I stick to using a generic Hostname like MacBook or MacBook-Pro.
+
+## FAQ
+
+**Q: Is this script the ultimate privacy, security and hardening setup for macOS?**
+
+**A:** No. But I will try to add as many privacy, security and hardening features to this script as possible without limiting the general usage of your mac device.
+
+
+**Q: Why is XYZ not in the script?**
+
+**A:** I will continue to add features to this setup script, please open an [issue](https://github.com/tortugato/macOS_autosetup/issues/new/choose), if your desired feature is currently not part of the script.
+
+
+**Q: Why is disabling Gatekeeper recommended?**
+
+**A:** The Gatekeeper feature on macOS sends data about your applications to Apple for verification each time you open an application and prevents unknown apps from opening. Due to privacy concerns, I wish to disable this feature to avoid Apple tracking my software usage.
+If you or the person you are running the script for are not that tech-savvy, you can leave the gatekeeper enabled for security reasons.
