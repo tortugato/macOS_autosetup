@@ -13,14 +13,15 @@ function introduction(){
     \n\nLets get started. Here is an overview of the steps this script will guide you through.
     \n1) Activating FileVault if not already activated
     \n2) Installation of helpful scripts
-    \n3) Setting important questions
+    \n3) Setting important settings
     \n4) Removing unneccessary features
     \n5) Installation of a Firewall
     \n6) Installation of a VPN
-    \n7) Installtion of the Brew packagemanager
+    \n7) Installation of the Brew packagemanager
     \n8) Installation of some basic packages
     \n9) Installation of custom packages
-    \n10) Cleaning up the look of MacOS"
+    \n10) Installation of dotfies
+    \n11) Cleaning up the look of MacOS"
 
     echo -e "\n\nHit ${GREEN}ENTER${NC} to continue or ${RED}ctrl-c${NC} to abort."
     read
