@@ -1,9 +1,8 @@
 clear
 
-
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-export PATH=$PATH:/usr/local/sbin
-export PATH="$PATH:/$HOME/.local/bin"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:$HOME/.local/bin"
 export PATH=/opt/homebrew/bin:$PATH
 
 # Specify brew installation path to be local
@@ -19,10 +18,3 @@ alias l.='eza -a | egrep "^\."'
 # confirm before overwriting something
 alias mv='mv -i'
 alias rm='rm -i'
-
-
-
-
-
-
-
