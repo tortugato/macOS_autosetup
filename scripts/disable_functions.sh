@@ -31,7 +31,7 @@ function disableFeatures() {
 
     # Run Commands
     disable_spotlight="
-    mdutil -i off &&
+    mdutil -i off / &&
     mdutil -E"
 
     disable_siri="
