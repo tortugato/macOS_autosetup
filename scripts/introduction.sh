@@ -27,7 +27,7 @@ function introduction(){
     echo -e "\n\nHit ${GREEN}ENTER${NC} to continue or ${RED}ctrl-c${NC} to abort."
     read
 
-    echo -e "After the initial setup of your system according to the README we will now configure the macOS system for privacy and security."
+    echo -e "Please consider to reset your macOS system and set it up as described in the README before running this script."
     echo -e "\nHit ${GREEN}ENTER${NC} to continue"
     read
 }
