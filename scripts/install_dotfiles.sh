@@ -33,7 +33,7 @@ function installDotfiles(){
 
             # Check if the file is the zshrc
             if [ "$base_name" = "zshrc" ]; then
-                cp "$main_dir/config/dotfiles/zshrc" ~/.zshrc
+                cp -f "$main_dir/config/dotfiles/zshrc" ~/.zshrc
                 source ~/.zshrc
             else
             # Copy files and directories to the destination
