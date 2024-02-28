@@ -45,7 +45,7 @@ function cleanLook() {
                                    # Construct the file path based on the selected color
                                    file_path="/System/Library/Desktop Pictures/Solid Colors/${color}.png"
                                    echo -e "\nYou will be prompted to allow Terminal Access to System Events. Please allow this and hit ${GREEN}ENTER${NC} to continue."
-
+                                   read
                                    # Apply the chosen color as the desktop background
                                    osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"${file_path}\" as POSIX file"
 
