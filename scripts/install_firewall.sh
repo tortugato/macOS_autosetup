@@ -58,11 +58,11 @@ function installFirewall(){
     printf "%${width}s\n" | tr ' ' '-'
 
     # Start the installation
-    echo -e "\nHit ${GREEN}ENTER${NC} to start the installation (you will be prompted for your password)"
+    echo -e "\nHit ${GREEN}ENTER${NC} to start the installation"
     read
 
     # Mount the DMG
-    hdiutil attach "$main_dir/vpn_and_firewall/firewall.dmg"
+    hdiutil attach "$main_dir/config/vpn_and_firewall/firewall.dmg"
 
     # Get the directory of the mounted volume
     if [[ "$firewall_name" == "Little Snitch" ]]; then
