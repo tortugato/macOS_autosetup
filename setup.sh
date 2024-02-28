@@ -1,5 +1,6 @@
 #!/bin/bash
 
+clear
 # Function to run commands with a prompt
 function runFunctions() {
     local prompt="$1"
@@ -89,6 +90,10 @@ printSectionHeading "Cleaning up Look"
 
 # Install Dotfiles
 runFunctions "Do you want to install dotiles?" "./scripts/install_dotfiles.sh" "Install Dotfiles"
+
+# Clean Up the Look
+printSectionHeading "Removing Admin Privileges"
+sudo ./scripts/remove_sudo.sh
 
 # Reboot on finish
 printSectionHeading "Script Finished!"

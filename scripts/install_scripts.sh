@@ -49,7 +49,6 @@ function installScripts(){
     mkdir -p /usr/local/sbin &&
     chown ${USER}:admin /usr/local/sbin &&
     touch ~/.zshrc &&
-    echo 'export PATH=$PATH:/usr/local/sbin' >> ~/.zshrc &&
     source ~/.zshrc &&
     cp '$main_dir/config/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
     chmod +x /usr/local/sbin/spoof.sh &&
@@ -61,14 +60,20 @@ function installScripts(){
     mkdir -p ~/.local/bin &&
     cp '$main_dir/config/installscripts/update' ~/.local/bin/ &&
     chmod +x ~/.local/bin/update &&
-    echo 'export PATH=$PATH:/$HOME/.local/bin' >> ~/.zshrc &&
     ( [ -e ~/.local/bin/update ] )
+    "
+
+    installSufoScript="
+    cp '$main_dir/config/installscripts/sufo' /usr/local/bin/ &&
+    chmod +x /usr/local/bin/sufo &&
+    ( [ -e /usr/local/bin/sufo ] )
     "
 
     installScript "Installing Cleanup Script" "$installCleanupScript"
     installScript "Installing App Cleaner Script" "$installAppCleanerScript"
     installScript "Installing Mac Address Randomizer" "$installMacaddressRandomizer"
     installScript "Installing Update Script" "$installUpdateScript"
+    installScript "Installing Sufo Script" "$installSufoScript"
 }
 
 installScripts
