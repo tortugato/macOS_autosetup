@@ -104,7 +104,7 @@ printSectionHeading "Cleaning up Look"
 # Install Dotfiles
 runFunctions "Do you want to install dotfiles?" "./scripts/install_dotfiles.sh" "Install Dotfiles"
 
-# Clean Up the Look
+# Removing Admin Priviledges
 printSectionHeading "Removing Admin Privileges"
 sudo ./scripts/remove_sudo.sh
 
