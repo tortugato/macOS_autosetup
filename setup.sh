@@ -102,7 +102,7 @@ printSectionHeading "Cleaning up Look"
 ./scripts/clean_look.sh
 
 # Install Dotfiles
-runFunctions "Do you want to install dotiles?" "./scripts/install_dotfiles.sh" "Install Dotfiles"
+runFunctions "Do you want to install dotfiles?" "./scripts/install_dotfiles.sh" "Install Dotfiles"
 
 # Clean Up the Look
 printSectionHeading "Removing Admin Privileges"
