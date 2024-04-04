@@ -8,7 +8,7 @@ NC='\033[0m'
 # Turn on network connection
 function connectToVPN() {
     echo -e "\nPlease make sure to ${BOLD}turn the Killswitch on.${NC} \n${RED}If your Firewall prompts you, accept the connections made by the VPN.${NC}"
-    echo -e "\nOpen you VPN, login and enable the Killswitch."
+    echo -e "\nOpen your VPN, log in and enable the Killswitch."
 
     echo -e "\nHit ${GREEN}ENTER${NC} to continue"
     read

@@ -53,6 +53,7 @@ I recommend to do the initial setup of your macOS system as following:
     - vpn.pkg/vpn.dmg
     - firewall.dmg
     - Brewfile_custom
+
     **Make sure to move those to the corresponding directories before starting the script.**
 
 
