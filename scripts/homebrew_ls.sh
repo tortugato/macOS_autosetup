@@ -8,8 +8,19 @@ NC='\033[0m'
 # Getting the main dir
 main_dir=$(dirname "$(dirname "$(realpath "$0")")")
 
+
+# Switch to Apple Update Profile
+echo -e "\n${RED}Make sure to activate the 'Apple Update' Profile for the next step.${NC}"
+echo -e "\nHit ${GREEN}ENTER${NC} when you activated 'Apple Update'."
+read
+
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Switch to Apple Disabled Profile
+echo -e "\n${RED}Make sure to active the 'Apple Disabled' Profile for the next steps.${NC}"
+echo -e "\nHit ${GREEN}ENTER${NC} when your Profile is switched."
+read
 
 # Turn Analytics off
 echo -e "\n${BOLD}Turning Brew Analytics off${NC}"
@@ -22,6 +33,7 @@ echo -e "\n${BOLD}Updating Brew${NC}"
 # Install important programs
 echo -e "\n${BOLD}Installing the Security Brewfile${NC}"
 /opt/homebrew/bin/brew bundle --file "$main_dir/config/brewfiles/Brewfile_security"
+
 
 # Ask to install custom brew file
 # Function to check for the existence of the custom Brewfile

@@ -23,6 +23,8 @@ function runFunctions() {
             # Connect to VPN prompt only when VPN was installed
             if [[ "$section_title" == "Install VPN" ]]; then
                 export VPN_INSTALLED=true;
+            elif [[ "$section_title" == "Install Firewall" ]]; then
+                export FIREWALL_INSTALLED=true;
             fi
         elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
             echo -e "Continuing without running the function.\n"
@@ -82,14 +84,18 @@ printSectionHeading "Connect to Internet"
 ./scripts/connect_to_internet.sh
 
 # Check if the user chose to install the VPN
-if [ "$VPN_INSTALLED" == "true" ]; then    # Connect to VPN
+if [ "$VPN_INSTALLED" == "true" ]; then
     printSectionHeading "Connect to VPN"
     ./scripts/connect_to_vpn.sh
 fi
 
 # Install homebrew and some neccessary packages
 printSectionHeading "Homebrew"
-./scripts/homebrew.sh
+if [[ "$FIREWALL_INSTALLED" == "true" && -e "/Applications/Little Snitch.app" ]]; then
+    ./scripts/homebrew_ls.sh
+else
+    ./scripts/homebrew.sh
+fi
 
 # Clean Up the Look
 printSectionHeading "Cleaning up Look"
