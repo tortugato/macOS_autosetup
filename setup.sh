@@ -110,4 +110,4 @@ sudo ./scripts/remove_sudo.sh
 
 # Reboot on finish
 printSectionHeading "Script Finished!"
-sudo ./scripts/reboot_on_finish.sh
+./scripts/reboot_on_finish.sh

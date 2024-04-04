@@ -10,7 +10,7 @@ function rebootOnFinish() {
     echo -e "\n\nHit ${GREEN}ENTER${NC} to reboot now or ${RED}ctrl-c${NC} to reboot manually later."
     read
     echo -e "\n${RED}Since your account is not an admin anymore you will be promted twice for the password you just assigned.${NC}"
-    sufo reboot
+    /usr/local/bin/sufo reboot
 }
 
 rebootOnFinish
