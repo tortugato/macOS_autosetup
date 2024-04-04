@@ -84,7 +84,7 @@ function installFirewall(){
     clear
 
     echo -e "${GREEN}The Firewall was successfully installed.${NC}"
-    echo -e "\n${RED}Please follow the setup process for LittleSnitch before continuing.${NC}"
+    echo -e "\n${RED}Please follow the setup process for $firewall_name before continuing.${NC}"
     echo -e "\n${BOLD}REMINDER: $firewall_install_note"
     echo -e "\nHit ${GREEN}ENTER${NC} when you are finished setting up $firewall_name"
     read
