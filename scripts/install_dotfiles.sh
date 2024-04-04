@@ -31,19 +31,13 @@ function installDotfiles(){
         # Check if the item should be excluded
         if [[ ! " ${exclude_patterns[@]} " =~ " $base_name " ]]; then
 
-            # Check if the file is the zshrc
-            if [ "$base_name" = "zshrc" ]; then
-                cp -f "$main_dir/config/dotfiles/zshrc" ~/.zshrc
-                source ~/.zshrc
-            else
             # Copy files and directories to the destination
-                cp -r "$item" "$dest_dir"
+            cp -r "$item" "$dest_dir"
 
-                # Check for errors
-                if [ $? -ne 0 ]; then
-                    echo "${RED}Error copying $item to $dest_dir${NC}"
-                    success=false
-                fi
+            # Check for errors
+            if [ $? -ne 0 ]; then
+                echo "${RED}Error copying $item to $dest_dir${NC}"
+                success=false
             fi
         fi
     done

@@ -37,11 +37,13 @@ function installScripts(){
     installCleanupScript="
     mkdir -p /usr/local/bin &&
     cp '$main_dir/config/installscripts/cleanup' '/usr/local/bin/cleanup' &&
+    chmod +x /usr/local/bin/cleanup &&
     [ -e '/usr/local/bin/cleanup' ]
     "
 
     installAppCleanerScript="
     cp '$main_dir/config/installscripts/app-cleaner' '/usr/local/bin/app-cleaner' &&
+    chmod +x /usr/local/bin/app-cleaner &&
     [ -e '/usr/local/bin/app-cleaner' ]
     "
 
@@ -64,9 +66,15 @@ function installScripts(){
     "
 
     installSufoScript="
-    cp '$main_dir/config/installscripts/sufo' /usr/local/bin/ &&
+    cp '$main_dir/config/installscripts/sufo' /usr/local/bin/sufo &&
     chmod +x /usr/local/bin/sufo &&
     ( [ -e /usr/local/bin/sufo ] )
+    "
+
+    installzshrc="
+    cp '$main_dir/config/installscripts/zshrc' ~/.zshrc &&
+    source ~/.zshrc &&
+    ( [ -e ~/.zshrc ] )
     "
 
     installScript "Installing Cleanup Script" "$installCleanupScript"
@@ -74,6 +82,7 @@ function installScripts(){
     installScript "Installing Mac Address Randomizer" "$installMacaddressRandomizer"
     installScript "Installing Update Script" "$installUpdateScript"
     installScript "Installing Sufo Script" "$installSufoScript"
+    installScript "Installing zshrc" "$installzshrc"
 }
 
 installScripts
