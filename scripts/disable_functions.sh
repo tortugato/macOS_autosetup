@@ -7,7 +7,7 @@ NC='\033[0m'
 
 # Remove unneccessary features
 function disableFeatures() {
-    echo -e "We will disable a few unneccessary features. \nYou will be asked if you want a feature to be disabled."
+    echo -e "\nWe will disable a few unneccessary features. \nYou will be asked if you want a feature to be disabled."
     echo -e "\nHit ${GREEN}ENTER${NC} to start"
     read
 
@@ -31,18 +31,18 @@ function disableFeatures() {
 
     # Run Commands
     disable_spotlight="
-    mdutil -i off / &&
+    mdutil -i off / > /dev/null 2>&1 &&
     mdutil -E"
 
     disable_siri="
     defaults write com.apple.assistant.support 'Assistant Enabled' -bool false &&
     defaults write com.apple.assistant.backedup 'Use device speaker for TTS' -int 3 &&
-    launchctl disable 'user/$UID/com.apple.assistantd' &&
-    launchctl disable 'gui/$UID/com.apple.assistantd' &&
-    launchctl disable 'system/com.apple.assistantd' &&
-    launchctl disable 'user/$UID/com.apple.Siri.agent' &&
-    launchctl disable 'gui/$UID/com.apple.Siri.agent' &&
-    launchctl disable 'system/com.apple.Siri.agent' &&
+    launchctl disable 'user/$UID/com.apple.assistantd' > /dev/null 2>&1 &&
+    launchctl disable 'gui/$UID/com.apple.assistantd' > /dev/null 2>&1 &&
+    launchctl disable 'system/com.apple.assistantd' > /dev/null 2>&1 &&
+    launchctl disable 'user/$UID/com.apple.Siri.agent' > /dev/null 2>&1 &&
+    launchctl disable 'gui/$UID/com.apple.Siri.agent' > /dev/null 2>&1 &&
+    launchctl disable 'system/com.apple.Siri.agent' > /dev/null 2>&1 &&
     defaults write com.apple.SetupAssistant 'DidSeeSiriSetup' -bool True &&
     defaults write com.apple.systemuiserver 'NSStatusItem Visible Siri' 0 &&
     defaults write com.apple.Siri 'StatusMenuVisible' -bool false &&
@@ -53,7 +53,7 @@ function disableFeatures() {
     defaults write com.apple.NetworkBrowser DisableAirDrop -bool true"
 
     disable_remote_connections="
-    systemsetup -setremotelogin off &&
+    echo 'yes' | systemsetup -setremotelogin off &&
     launchctl disable 'system/com.apple.tftpd' &&
     defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true &&
     launchctl disable system/com.apple.telnetd &&
@@ -65,16 +65,16 @@ function disableFeatures() {
     spctl --master-disable"
 
     disable_power_options="
-    pmset -a tcpkeepalive 0 &&
-    pmset -a powernap 0 &&
-    pmset -a networkoversleep 0 &&
-    pmset -a ttyskeepawake 0 &&
+    pmset -a tcpkeepalive 0 > /dev/null 2>&1 &&
+    pmset -a powernap 0 > /dev/null 2>&1 &&
+    pmset -a networkoversleep 0 > /dev/null 2>&1 &&
+    pmset -a ttyskeepawake 0 > /dev/null 2>&1 &&
     pmset -a womp 0"
 
     runCommand "Do you want to Disable Spotlight? (you can install an alternative like Raycast/Alfred later)" "$disable_spotlight"
     runCommand "Do you want to Disable Siri? (recommended)" "$disable_siri"
     runCommand "Do you want to Disable AirDrop? (recommended)" "$disable_airdrop"
-    runCommand "Do you want to Disable Remote Connections? (recommended, but it can take a few seconds to complete)" "$disable_remote_connections"
+    runCommand "Do you want to Disable Remote Connections? (recommended - it can take a few seconds to complete)" "$disable_remote_connections"
     runCommand "Do you want to Disable Gatekeeper (recommended)" "$disable_gatekeeper"
     runCommand "Do you want to Disable Power Options (recommended)" "$disable_power_options"
 }
