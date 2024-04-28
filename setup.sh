@@ -1,6 +1,5 @@
 #!/bin/bash
 
-clear
 # Function to run commands with a prompt
 function runFunctions() {
     local prompt="$1"
@@ -37,17 +36,17 @@ function runFunctions() {
 
 function printSectionHeading() {
     local title="$1"
+    title_length=$(( ${#title} + 4 ))  # Account for additional characters
 
     # Get terminal width
     local terminal_width=$(tput cols)
+    length_to_fill=$(( terminal_width - title_length ))
 
-    # Calculate the padding for the sides
-    local padding=$(( (terminal_width - ${#title} - 4) / 2 ))
+    # Create a string of '-' characters of length length_to_fill
+    local fill_characters=$(printf '─%.0s' $(seq 1 $length_to_fill))
 
     # Print the pattern
-    printf "%${terminal_width}s\n" | tr ' ' '#'
-    printf "%${padding}s%s%${padding}s\n" "" "$title" ""
-    printf "%${terminal_width}s\n" | tr ' ' '#'
+    printf "─ \033[1m%s\033[0m \033[1m%s\033[0m\n" "$title" "$fill_characters"
 }
 
 # Clear before start
