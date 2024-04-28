@@ -11,7 +11,7 @@ main_dir=$(dirname "$(dirname "$(realpath "$0")")")
 
 # Installation of a Firewall
 function installFirewall(){
-    echo -e "Next we will install a Firewall."
+    echo -e "\nNext we will install a Firewall."
 
     # Check if firewall.dmg file is in folder
     while true; do
@@ -81,7 +81,6 @@ function installFirewall(){
 
     #Open the firewall
     open "/Applications/${firewall_name}.app"
-    clear
 
     echo -e "${GREEN}The Firewall was successfully installed.${NC}"
     echo -e "\n${RED}Please follow the setup process for $firewall_name before continuing.${NC}"
