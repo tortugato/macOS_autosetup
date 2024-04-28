@@ -50,8 +50,6 @@ function installScripts(){
     installMacaddressRandomizer="
     mkdir -p /usr/local/sbin &&
     chown ${USER}:admin /usr/local/sbin &&
-    touch ~/.zshrc &&
-    source ~/.zshrc &&
     cp '$main_dir/config/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
     chmod +x /usr/local/sbin/spoof.sh &&
     cp '$main_dir/config/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist' &&
@@ -73,7 +71,6 @@ function installScripts(){
 
     installzshrc="
     cp '$main_dir/config/installscripts/zshrc' ~/.zshrc &&
-    source ~/.zshrc &&
     ( [ -e ~/.zshrc ] )
     "
 
@@ -86,3 +83,5 @@ function installScripts(){
 }
 
 installScripts
+sleep 1
+source ~/.zshrc
