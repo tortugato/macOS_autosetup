@@ -11,10 +11,8 @@ main_dir=$(dirname "$(dirname "$(realpath "$0")")")
 
 # Installation of VPN
 function installVpn(){
-    clear
 
-    # Check if vpn.dmg file is in folder
-    echo "Which VPN do you want to install? (enter the number): "
+    echo -e "\nWhich VPN do you want to install? (enter the number):\n"
     options=("ProtonVPN" "Mullvad")
 
     select vpn_choice in "${options[@]}"; do
@@ -52,6 +50,7 @@ function installVpn(){
     done
 
     # Continue with installation based on the selected VPN
+    echo -e "\nInstalling $vpn_name ..."
     if [ "$vpn_name" == "ProtonVPN" ]; then
         hdiutil attach "$vpn_file"
         rsync -a "/Volumes/ProtonVPN/ProtonVPN.app" "/Applications/"
@@ -62,7 +61,7 @@ function installVpn(){
         installer -package "$vpn_file" -target /
     fi
 
-    clear
+
     echo -e "${GREEN}The VPN was successfully installed.${NC}"
 }
 
