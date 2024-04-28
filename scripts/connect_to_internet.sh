@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Set colors to the accroding variables
+BOLD='\033[1m'
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
@@ -14,7 +15,7 @@ function turnNetworkOn() {
     while true; do
         if ! ping -q -c 1 -W 1 proton.me > /dev/null 2>&1; then
             clear
-            echo "Internet connection is not available."
+            echo -e "${BOLD}Internet connection is not available.${NC}"
             echo -e "${RED}Please turn your internet connection on.${NC}"
             echo -e "\nHit ${GREEN}ENTER${NC} when your internet is connected."
             read
