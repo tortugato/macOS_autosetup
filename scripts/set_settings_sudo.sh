@@ -44,7 +44,7 @@ function setSettings(){
     )
 
     setTimeFromNTP=(
-        "systemsetup -setnetworktimeserver pool.ntp.org"
+        "systemsetup -setnetworktimeserver pool.ntp.org 2>&1 | grep 'setNetworkTimeServer: pool.ntp.org'"
         "systemsetup -setusingnetworktime on"
     )
 
@@ -84,6 +84,19 @@ function setSettings(){
         "defaults write /Library/Preferences/com.apple.Bluetooth BluetoothAutoSeekPointingDevice -bool false"
     )
 
+    disableBluetoothSharing=(
+        "defaults write /Library/Preferences/com.apple.Bluetooth PrefKeyServicesEnabled -bool false"
+    )
+
+    disableConsoleAccess=(
+        "defaults write /Library/Preferences/com.apple.loginwindow DisableConsoleAccess -bool true"
+    )
+
+    disableReopenWindows=(
+        "defaults write com.apple.loginwindow TALLogoutSavesState -bool false"
+        "defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false"
+    )
+
     # Run the configureSettings function for each set of commands
     configureSettings "Activating Firewall" "${activateFirewall[@]}"
     configureSettings "Check Firewall Settings" "${checkFirewallSettings[@]}"
@@ -95,7 +108,9 @@ function setSettings(){
     configureSettings "Disable Metadata Files" "${disableMetadataFiles[@]}"
     configureSettings "Disable Automatic Updates" "${disableAutomaticUpdates[@]}"
     configureSettings "Disable Automatic Bluetooth Keyboard/Mouse Search" "${disableAutomaticBluetoothSearch[@]}"
-
+    configureSettings "Disable Bluetooth Sharing" "${disableBluetoothSharing[@]}"
+    configureSettings "Disable Console Access" "${disableConsoleAccess[@]}"
+    configureSettings "Disable Reopen Windows on Login" "${disableReopenWindows[@]}"
 }
 
 setSettings
