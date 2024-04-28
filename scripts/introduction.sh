@@ -24,10 +24,10 @@ function introduction(){
     \n10) Installation of dotfies (optional)
     \n11) Cleaning up the look of MacOS (optional)"
 
-    echo -e "\n\nHit ${GREEN}ENTER${NC} to continue or ${RED}ctrl-c${NC} to abort."
+    echo -e "\n\nHit ${GREEN}ENTER${NC} to continue or ${RED}CTRL+C${NC} to abort."
     read
 
-    echo -e "Please consider to reset your macOS system and set it up as described in the README before running this script."
+    echo -e "${BOLD}Please consider to reset your macOS system and set it up as described in the README before running this script.${NC}"
     echo -e "\nHit ${GREEN}ENTER${NC} to continue"
     read
 }
