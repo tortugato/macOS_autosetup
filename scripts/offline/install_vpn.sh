@@ -1,4 +1,4 @@
-#!/bin/bash
+x#!/bin/bash
 
 # Set colors to the accroding variables
 BOLD='\033[1m'
@@ -7,7 +7,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(realpath "$0")")")
+main_dir=$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")
 
 # Installation of VPN
 function installVpn(){

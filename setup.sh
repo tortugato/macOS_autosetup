@@ -21,9 +21,9 @@ function runFunctions() {
 
             # Connect to VPN prompt only when VPN was installed
             if [[ "$section_title" == "Install VPN" ]]; then
-                export VPN_INSTALLED=true;
+                export VPN_INSTALLED=true
             elif [[ "$section_title" == "Install Firewall" ]]; then
-                export FIREWALL_INSTALLED=true;
+                export FIREWALL_INSTALLED=true
             fi
         elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
             echo -e "Continuing without running the function.\n"
@@ -52,9 +52,38 @@ function printSectionHeading() {
 # Clear before start
 clear
 
+# Ask the user for online or offline install
+offline_install=true
+while true; do
+    echo -n "Do you want to perform an online install? (y/n): "
+    read -r install_choice
+    if [[ "$install_choice" == "y" || "$install_choice" == "Y" ]]; then
+        offline_install=false
+        break
+    elif [[ "$install_choice" == "n" || "$install_choice" == "N" ]]; then
+        offline_install=true
+        break
+    else
+        echo "Invalid choice. Please enter 'y' or 'n'."
+    fi
+done
+
+# Set the path suffix based on the install method
+if [ "$offline_install" == true ]; then
+    path_suffix="offline"
+else
+    path_suffix="online"
+fi
+
+clear
+
 # Check internet and exit if available
-printSectionHeading "Turning Internet Connection off"
-sudo ./scripts/check_internet.sh
+if [ "$offline_install" == true ]; then
+    printSectionHeading "Turning Internet Connection off"
+else
+    printSectionHeading "Turning Internet Connection on"
+fi
+sudo ./scripts/${path_suffix}/check_internet.sh
 
 # Introduction
 printSectionHeading "Introduction"
@@ -75,12 +104,14 @@ sudo ./scripts/set_settings_sudo.sh
 
 # Run functions with prompts
 runFunctions "Do you want to Disable Features? (recommended)" "sudo ./scripts/disable_functions.sh" "Disable Features"
-runFunctions "Do you want to Install a Firewall? (highly recommended)" "sudo ./scripts/install_firewall.sh" "Install Firewall"
-runFunctions "Do you want to Install a VPN? (recommended)" "sudo ./scripts/install_vpn.sh" "Install VPN"
+runFunctions "Do you want to Install a Firewall? (highly recommended)" "sudo ./scripts/${path_suffix}/install_firewall.sh" "Install Firewall"
+runFunctions "Do you want to Install a VPN? (recommended)" "sudo ./scripts/${path_suffix}/install_vpn.sh" "Install VPN"
 
-# Turn internet on
-printSectionHeading "Connect to Internet"
-./scripts/connect_to_internet.sh
+# Connect to internet only if offline install was chosen
+if [ "$offline_install" == true ]; then
+    printSectionHeading "Connect to Internet"
+    ./scripts/${path_suffix}/connect_to_internet.sh
+fi
 
 # Check if the user chose to install the VPN
 if [ "$VPN_INSTALLED" == "true" ]; then
@@ -88,7 +119,7 @@ if [ "$VPN_INSTALLED" == "true" ]; then
     ./scripts/connect_to_vpn.sh
 fi
 
-# Install homebrew and some neccessary packages
+# Install homebrew and some necessary packages
 printSectionHeading "Homebrew"
 if [[ "$FIREWALL_INSTALLED" == "true" && -e "/Applications/Little Snitch.app" ]]; then
     ./scripts/homebrew_ls.sh
@@ -103,7 +134,7 @@ printSectionHeading "Cleaning up Look"
 # Install Dotfiles
 runFunctions "Do you want to install dotfiles?" "./scripts/install_dotfiles.sh" "Install Dotfiles"
 
-# Removing Admin Priviledges
+# Removing Admin Privileges
 printSectionHeading "Removing Admin Privileges"
 sudo ./scripts/remove_sudo.sh
 

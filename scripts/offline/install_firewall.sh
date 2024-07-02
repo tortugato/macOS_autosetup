@@ -7,7 +7,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(realpath "$0")")")
+main_dir=$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")
 
 # Installation of a Firewall
 function installFirewall(){
@@ -17,7 +17,7 @@ function installFirewall(){
     while true; do
         if [ ! -e "$main_dir/config/vpn_and_firewall/firewall.dmg" ]; then
             clear
-            echo -e "${RED}Not all files required for this setup are in $main_dir/vpn_and_firewall/.${NC}"
+            echo -e "${RED}Not all files required for this setup are in $main_dir/config/vpn_and_firewall/.${NC}"
             echo "Please double-check to include the firewall file. (firewall.dmg)"
             read -p "Press Enter to retry or 'q' to quit: " input
             if [ "$input" == "q" ]; then
@@ -54,7 +54,7 @@ function installFirewall(){
         esac
     done
 
-    echo -e "\nPlease make sure to follow the instructions by the $firewall_name installer carefully! \n${BOLD}Make sure: $firewall_install_note ${NC}"
+    echo -e "\nPlease make sure to follow the instructions by the $firewall_name installer carefully! \n"
     printf "%${width}s\n" | tr ' ' '-'
 
     # Start the installation
@@ -79,13 +79,17 @@ function installFirewall(){
     hdiutil detach "${app_name}/"
     sleep 3
 
+    # Hit enter to setup
+    echo -e "\n${GREEN}Successfully installed $firewall_name${NC}."
+    echo -e "\nHit ${GREEN}ENTER${NC} to start the setup!"
+    read
+
     #Open the firewall
     open "/Applications/${firewall_name}.app"
 
-    echo -e "${GREEN}The Firewall was successfully installed.${NC}"
     echo -e "\n${RED}Please follow the setup process for $firewall_name before continuing.${NC}"
-    echo -e "\n${BOLD}REMINDER: $firewall_install_note"
-    echo -e "\nHit ${GREEN}ENTER${NC} when you are finished setting up $firewall_name"
+    echo -e "\n${BOLD} $firewall_install_note"
+    echo -e "\nHit ${GREEN}ENTER${NC} when you have finished setting up $firewall_name"
     read
 }
 
