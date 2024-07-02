@@ -10,7 +10,7 @@ NC='\033[0m'
 function introduction(){
     echo -e "${BOLD}\nWELCOME TO THE SETUP${NC}"
     echo -e "This setup script aims to set up MacOS in the most private and secure way possible. \nThis script performs steps that I consider necessary and unavoidable to use MacOS privately and securely. \nI will continue to improve this script, so please keep an eye on the Github repository for possible changes. \nIf you have any suggestions for improvement, please post an issue to Github, I will try to take care of it as soon as possible.
-    \n\nIf you wish to install a firewall, a vpn, custom homebrew packages and/or your dotfiles please make sure to put them into the correct directories.
+    \n\n${BOLD}If you wish to install a firewall, a vpn, custom homebrew packages and/or your dotfiles please make sure to put them into the correct directories.${NC}
     \n\nLets get started. Here is an overview of the steps this script will guide you through.
     \n1) Activating FileVault
     \n2) Installation of helpful scripts

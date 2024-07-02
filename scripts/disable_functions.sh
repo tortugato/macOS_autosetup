@@ -14,19 +14,25 @@ function disableFeatures() {
     function runCommand() {
         local prompt="$1"
         local command_to_run="$2"
-        echo -en "${BOLD}$prompt${NC} (y/n): "
-        read choice
+        local choice
 
-        if [[ "$choice" == "y" || "$choice" == "Y" || -z "$choice" ]]; then
-            echo "Running the command..."
-            # Run the specified command
-            eval "$command_to_run"
-            echo -e "${GREEN}Successfull${NC}\n"
-        elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
-            echo -e "Exiting without running the command. \n"
-        else
-            echo "Invalid choice. Please enter 'y' or 'n'."
-        fi
+        while true; do
+            echo -en "${BOLD}$prompt${NC} (y/n): "
+            read choice
+
+            if [[ "$choice" == "y" || "$choice" == "Y" || -z "$choice" ]]; then
+                echo "Running the command..."
+                # Run the specified command
+                eval "$command_to_run"
+                echo -e "${GREEN}Successful${NC}\n"
+                break
+            elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
+                echo -e "Exiting without running the command.\n"
+                break
+            else
+                echo "Invalid choice. Please enter 'y' or 'n'."
+            fi
+        done
     }
 
     # Run Commands
