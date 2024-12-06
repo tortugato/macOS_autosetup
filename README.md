@@ -5,6 +5,8 @@
 
 Privacy and Security focused setup script for macOS
 
+## !!Currently under review to work with MacOS 15!!
+
 
 I created this script to automate the setup of my macOS system. I want my system to be
 - private and
