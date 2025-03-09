@@ -87,22 +87,24 @@ If you are using LittleSnitch, log in to your account
 ### How to use installed scripts
 
 1. **Cleanup Script**\
-   This script removes temporary files, cache and other unnecessary files to free up space
-   `bash
- cleanup
- `
+    This script removes temporary files, cache and other unnecessary files to free up space
+
+   ```bash
+   cleanup
+   ```
 
 2. **Update Script**\
    This script updates the system using brew
-   `bash
- update
- `
+
+   ```bash
+   update
+   ```
 
 3. **Spoof.sh script**\
-   This script spoofs the MacAddress and sets a generic Hostname. It gets executed automatically on each reboot but can also be started manually.
-   `bash
- spoof.sh
- `
+    This script spoofs the MacAddress and sets a generic Hostname. It gets executed automatically on each reboot but can also be started manually.
+   ```bash
+   spoof.sh
+   ```
 
 ### How to use installed Applications
 
@@ -112,6 +114,8 @@ If you are using LittleSnitch, log in to your account
   Use Onyx to set some custom settings. You can also use Onyx to clear temporary data etc.
 - **VeraCrypt**\
   Consider creating an encrypted Volume or use VeraCrypt to encrypt external Volumes
+- **Pearcleaner**\
+  Use Pearcleaner to uninstall Applications (also those installed through brew)
 
 ### ToDo:
 
@@ -123,11 +127,10 @@ There are a few settings that still need to be changed manually. This includes:
 
 ## This project was inspired by:
 
-#### [Sun Knudsen](https://github.com/sunknudsen)
-
-The [app-cleaner](https://github.com/sunknudsen/privacy-guides/tree/master/how-to-clean-uninstall-macos-apps-using-appcleaner-open-source-alternative) and [spoof.sh](https://github.com/sunknudsen/privacy-guides/tree/master/how-to-spoof-mac-address-and-hostname-automatically-at-boot-on-macos) script are modified versions of his.\
-**App-cleaner**: I added the removal of brew files and removed the saving of bill of material logs.\
-**Spoof.sh**: Instead of adding a random name in front of the Hostname I stick to using a generic Hostname like MacBook or MacBook-Pro.
+- [Sun Knudsen](https://github.com/sunknudsen)
+  - The [spoof.sh](https://github.com/sunknudsen/privacy-guides/tree/master/how-to-spoof-mac-address-and-hostname-automatically-at-boot-on-macos) script is a modified version of his. Instead of adding a random name in front of the hostname, I stick to using a generic hostname like MacBook or MacBook-Pro.
+- [Awesome Mac](https://github.com/jaywcjlove/awesome-mac)
+- [Pearcleaner](https://github.com/alienator88/Pearcleaner)
 
 ## FAQ
 
