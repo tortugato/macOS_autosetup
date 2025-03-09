@@ -41,12 +41,6 @@ function installScripts(){
     [ -e '/usr/local/bin/cleanup' ]
     "
 
-    installAppCleanerScript="
-    cp '$main_dir/config/installscripts/app-cleaner' '/usr/local/bin/app-cleaner' &&
-    chmod +x /usr/local/bin/app-cleaner &&
-    [ -e '/usr/local/bin/app-cleaner' ]
-    "
-
     installMacaddressRandomizer="
     mkdir -p /usr/local/sbin &&
     chown ${USER}:admin /usr/local/sbin &&
@@ -75,7 +69,6 @@ function installScripts(){
     "
 
     installScript "Installing Cleanup Script" "$installCleanupScript"
-    installScript "Installing App Cleaner Script" "$installAppCleanerScript"
     installScript "Installing Mac Address Randomizer" "$installMacaddressRandomizer"
     installScript "Installing Update Script" "$installUpdateScript"
     installScript "Installing Sufo Script" "$installSufoScript"

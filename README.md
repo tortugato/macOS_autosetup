@@ -86,34 +86,23 @@ If you are using LittleSnitch, log in to your account
 
 ### How to use installed scripts
 
-1. **App-Cleaner Script**\
-   This script deletes a program and all of its remaining files\
-   Usage:
-   `bash
-    app-cleaner.sh /Applications/AppToUninstall.app
-    `
-   or
-   `bash
-    app-cleaner.sh ~/Applications/AppToUninstall.app
-    `
-
-2. **Cleanup Script**\
+1. **Cleanup Script**\
    This script removes temporary files, cache and other unnecessary files to free up space
    `bash
-    cleanup
-    `
+ cleanup
+ `
 
-3. **Update Script**\
+2. **Update Script**\
    This script updates the system using brew
    `bash
-    update
-    `
+ update
+ `
 
-4. **Spoof.sh script**\
+3. **Spoof.sh script**\
    This script spoofs the MacAddress and sets a generic Hostname. It gets executed automatically on each reboot but can also be started manually.
    `bash
-    spoof.sh
-    `
+ spoof.sh
+ `
 
 ### How to use installed Applications
 
