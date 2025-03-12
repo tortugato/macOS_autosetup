@@ -34,7 +34,7 @@ function installVpn(){
         case $vpn_choice in
             "ProtonVPN")
                 # Set Download URL and VPN file name for ProtonVPN
-                download_url="https://protonvpn.com/download/ProtonVPN_mac_v4.3.0.dmg"
+                download_url="https://vpn.protondownload.com/download/macos/4.8.0/ProtonVPN_mac_v4.8.0.dmg"
                 vpn_file="vpn.dmg"  # Set the file name to vpn.dmg
 
                 # Call universal download function

@@ -32,7 +32,7 @@ function installFirewall() {
         case $firewall_choice in
             "LittleSnitch")
                 # Set Download URL for Little Snitch
-                download_url="https://www.obdev.at/downloads/littlesnitch/legacy/LittleSnitch-5.7.6.dmg"
+                download_url="https://www.obdev.at/downloads/littlesnitch/LittleSnitch-6.2.2.dmg"
 
                 # Call universal download function
                 downloadFirewall "$download_url"
@@ -43,7 +43,7 @@ function installFirewall() {
                 ;;
             "LuLu")
                 # Set Download URL for LuLu
-                download_url="https://github.com/objective-see/LuLu/releases/download/v2.6.3/LuLu_2.6.3.dmg"
+                download_url="https://github.com/objective-see/LuLu/releases/download/v3.1.2/LuLu_3.1.2.dmg"
 
                 # Call universal download function
                 downloadFirewall "$download_url"
