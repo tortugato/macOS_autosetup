@@ -9,7 +9,6 @@ from utils import (
     clear_terminal
 )
 from user_interaction import get_user_confirmation
-from environment import set_environment_variables
 
 
 def main():

@@ -7,7 +7,7 @@ NC='\033[0m'
 
 # Remove unneccessary features
 function disableFeatures() {
-    echo -e "\nWe will disable a few unneccessary features. \nYou will be asked if you want a feature to be disabled."
+    echo -e "\nWe will disable a few intrusive features. \nYou will be asked if you want a feature to be disabled."
     echo -e "\nHit ${GREEN}ENTER${NC} to start"
     read
 

@@ -9,7 +9,7 @@ NC='\033[0m'
 # Get the path for the script directory
 main_dir=$(dirname "$(dirname "$(realpath "$0")")")
 
-# Cleanup Script Installation
+# Install Scripts
 function installScripts(){
     sleep 1
     echo -e "${BOLD}Installing Scripts...${NC}"

@@ -24,7 +24,6 @@ def run_mandatory_installations():
         run_command(script)
 
 
-
 def run_optional_installations():
     """Run optional installation scripts based on user confirmation."""
     for installation in OPTIONAL_INSTALLATIONS:
@@ -34,8 +33,6 @@ def run_optional_installations():
 
         print_section_heading(title)
         run_functions(prompt, script, title)
-
-
 
 
 def run_online_installation(chosen_installation):

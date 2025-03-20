@@ -21,7 +21,6 @@ def run_command(command, user_input=None):
     return process.returncode
 
 
-
 def run_functions(prompt, command_to_run, section_title):
     """Run a command with a prompt for user confirmation."""
 
@@ -35,7 +34,6 @@ def run_functions(prompt, command_to_run, section_title):
     else:
         # No prompt provided; automatic execution
         run_command(command_to_run)
-
 
 
 def print_section_heading(title):
