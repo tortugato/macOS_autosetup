@@ -7,17 +7,16 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")
+main_dir=$(dirname "$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")")
 
 # Universal download function
 function downloadFirewall() {
     local download_url=$1
 
     # Step 1: Download the asset
-    curl -L -o firewall.dmg "$download_url"
+    curl -L -o "${main_dir}/resources/vpn_and_firewall/firewall.dmg" "$download_url"
 
-    # Step 2: Move the asset to the specified directory
-    mv firewall.dmg "${main_dir}/config/vpn_and_firewall/firewall.dmg"
+
 }
 
 # Function to install a Firewall
@@ -32,7 +31,7 @@ function installFirewall() {
         case $firewall_choice in
             "LittleSnitch")
                 # Set Download URL for Little Snitch
-                download_url="https://www.obdev.at/downloads/littlesnitch/LittleSnitch-6.2.2.dmg"
+                download_url="https://www.obdev.at/downloads/littlesnitch/LittleSnitch-6.2.3.dmg"
 
                 # Call universal download function
                 downloadFirewall "$download_url"
@@ -60,7 +59,7 @@ function installFirewall() {
 
     # Check if firewall.dmg file is in folder
     while true; do
-        if [ ! -e "$main_dir/config/vpn_and_firewall/firewall.dmg" ]; then
+        if [ ! -e "$main_dir/resources/vpn_and_firewall/firewall.dmg" ]; then
             clear
             echo -e "${RED}Something went wrong. Not all files required for this setup are in $main_dir/vpn_and_firewall/.${NC}"
             echo "Please download the firewall file manually and place it in $main_dir/vpn_and_firewall/ as firewall.dmg"
@@ -82,7 +81,7 @@ function installFirewall() {
     read
 
     # Mount the DMG
-    hdiutil attach "$main_dir/config/vpn_and_firewall/firewall.dmg"
+    hdiutil attach "$main_dir/resources/vpn_and_firewall/firewall.dmg"
 
     # Get the directory of the mounted volume
     if [[ "$firewall_name" == "Little Snitch" ]]; then

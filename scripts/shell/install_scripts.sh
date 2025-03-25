@@ -7,7 +7,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(realpath "$0")")")
+main_dir=$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")
 
 # Install Scripts
 function installScripts(){
@@ -35,36 +35,35 @@ function installScripts(){
     }
 
     installCleanupScript="
-    mkdir -p /usr/local/bin &&
-    cp '$main_dir/config/installscripts/cleanup' '/usr/local/bin/cleanup' &&
-    chmod +x /usr/local/bin/cleanup &&
-    [ -e '/usr/local/bin/cleanup' ]
+    mkdir -p ~/.local/bin &&
+    cp '$main_dir/resources/installscripts/cleanup' ~/.local/bin/ &&
+    chmod +x ~/.local/bin/cleanup &&
+    ( [ -e ~/.local/bin/cleanup ] )
     "
 
     installMacaddressRandomizer="
     mkdir -p /usr/local/sbin &&
     chown ${USER}:admin /usr/local/sbin &&
-    cp '$main_dir/config/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
+    cp '$main_dir/resources/installscripts/spoof.sh' '/usr/local/sbin/spoof.sh' &&
     chmod +x /usr/local/sbin/spoof.sh &&
-    cp '$main_dir/config/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist' &&
+    cp '$main_dir/resources/installscripts/local.spoof.plist' '/Library/LaunchDaemons/local.spoof.plist' &&
     [ -e '/usr/local/sbin/spoof.sh' ]
     "
 
     installUpdateScript="
-    mkdir -p ~/.local/bin &&
-    cp '$main_dir/config/installscripts/update' ~/.local/bin/ &&
+    cp '$main_dir/resources/installscripts/update' ~/.local/bin/ &&
     chmod +x ~/.local/bin/update &&
     ( [ -e ~/.local/bin/update ] )
     "
 
     installSufoScript="
-    cp '$main_dir/config/installscripts/sufo' /usr/local/bin/sufo &&
-    chmod +x /usr/local/bin/sufo &&
-    ( [ -e /usr/local/bin/sufo ] )
+    cp '$main_dir/resources/installscripts/sufo' ~/.local/bin/ &&
+    chmod +x ~/.local/bin/sufo &&
+    ( [ -e ~/.local/bin/sufo ] )
     "
 
     installzshrc="
-    cp '$main_dir/config/installscripts/zshrc' ~/.zshrc &&
+    cp '$main_dir/resources/installscripts/zshrc' ~/.zshrc &&
     ( [ -e ~/.zshrc ] )
     "
 

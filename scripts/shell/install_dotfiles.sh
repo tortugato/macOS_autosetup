@@ -7,13 +7,13 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(realpath "$0")")")
+main_dir=$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")
 dest_dir="/Users/$USER/.config/"
-mkdir "/Users/$USER/.config/"
+mkdir -p "/Users/$SUDO_USER/.config/"
 # Cleanup Script Installation
 function installDotfiles(){
 
-    echo -e "\nMake sure to include all your dotfiles in ${BOLD}"$main_dir/config/dotfiles/"${NC}\n"
+    echo -e "\nMake sure to include all your dotfiles in ${BOLD}"$main_dir/resources/dotfiles/"${NC}\n"
     echo -e "\nHit ${GREEN}ENTER${NC} to continue"
     read
 
@@ -24,7 +24,7 @@ function installDotfiles(){
     success=true
 
     # Iterate over files and directories
-    for item in "$main_dir"/config/dotfiles/*; do
+    for item in "$main_dir"/resources/dotfiles/*; do
         # Extract the base name of the item
         base_name=$(basename "$item")
 

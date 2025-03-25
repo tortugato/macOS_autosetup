@@ -1,12 +1,12 @@
 # utils.py
 
-from helpers import *
-from config import *
+from scripts.python.config import *
+from scripts.python.helpers import *
 
 
 def installation_method(chosen_installation):
     """Perform internet connection check based on online or offline choice."""
-    path_suffix = OFFLINE_INSTALL_SCRIPT if chosen_installation else ONLINE_INSTALL_SCRIPT
+    path_suffix = OFFLINE_INSTALL_SHELL if chosen_installation else ONLINE_INSTALL_SHELL
 
     # Corrected path to check internet connection status
     check_internet_script = os.path.join(path_suffix, "check_internet.sh")
@@ -24,12 +24,24 @@ def run_mandatory_installations():
         run_command(script)
 
 
-def run_optional_installations():
+def run_optional_installations(chosen_installation):
     """Run optional installation scripts based on user confirmation."""
+
     for installation in OPTIONAL_INSTALLATIONS:
         prompt = installation["prompt"]
-        script = installation["script"]
         title = installation["title"]
+
+        # Check if the title is "Install Firewall"
+        if title == "Install Firewall":
+            # Set script based on chosen_installation
+            if not chosen_installation:
+                script = INSTALL_FIREWALL_ONLINE
+        elif title == "Install VPN":
+            if not chosen_installation:
+                script = INSTALL_VPN_ONLINE
+        else:
+            # Default script from installation dictionary
+            script = installation["script"]
 
         print_section_heading(title)
         run_functions(prompt, script, title)
@@ -39,20 +51,20 @@ def run_online_installation(chosen_installation):
     """Handle tasks related to online installation."""
     if chosen_installation:
         print_section_heading("Connect to Internet")
-        run_command(f"{OFFLINE_INSTALL_SCRIPT}/connect_to_internet.sh")
+        run_command(CONNECT_INTERNET)
 
     # Check if the user chose to install the VPN
     if os.getenv('VPN_INSTALLED') == 'true':
         print_section_heading("Connect to VPN")
-        run_command("./scripts/connect_to_vpn.sh")
+        run_command(CONNECT_VPN)
 
     # Install homebrew and some necessary packages
     print_section_heading("Homebrew")
 
     if os.getenv('FIREWALL_INSTALLED') == 'true' and os.path.exists("/Applications/Little Snitch.app"):
-        run_command("./scripts/homebrew_ls.sh")
+        run_command(HOMEBREW_LS)
     else:
-        run_command("./scripts/homebrew.sh")
+        run_command(HOMEBREW)
 
 
 def finish_installation():

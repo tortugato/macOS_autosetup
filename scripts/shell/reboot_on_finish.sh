@@ -9,8 +9,8 @@ function rebootOnFinish() {
     echo -e "${BOLD}The Setup Script is finished.${NC}"
     echo -e "\n\nHit ${GREEN}ENTER${NC} to reboot now or ${RED}ctrl-c${NC} to reboot manually later."
     read
-    echo -e "\n${RED}Since your account is not an admin anymore you will be promted twice for the password you just assigned.${NC}"
-    /usr/local/bin/sufo reboot
+    echo -e "\n${RED}Since your account is not an admin anymore you will be prompted twice for the password you just assigned.${NC}"
+    ~/.local/bin/sufo reboot
 }
 
 rebootOnFinish

@@ -8,6 +8,9 @@ NC='\033[0m'
 
 # Function to install Homebrew
 installHomebrew() {
+    echo -e "\n${RED}Make sure to activate the 'Apple Update' Profile in Little Snitch for the next step.${NC}"
+    echo -e "Hit ${GREEN}ENTER${NC} when you activated 'Apple Update'."
+    read -r
 
     # Installation
     while true; do
@@ -35,12 +38,12 @@ updateAndInstall() {
     /opt/homebrew/bin/brew update
 
     echo -e "\n${BOLD}Installing the Security Brewfile${NC}"
-    /opt/homebrew/bin/brew bundle --file "$main_dir/config/brewfiles/Brewfile_security"
+    /opt/homebrew/bin/brew bundle --file "$main_dir/resources/brewfiles/Brewfile_security"
 }
 
 # Function to check for and install a custom Brewfile
 installCustomBrewfile() {
-    brew_file="$main_dir/config/brewfiles/Brewfile_custom"
+    brew_file="$main_dir/resources/brewfiles/Brewfile_custom"
     while true; do
         if [ ! -e "$brew_file" ]; then
             clear

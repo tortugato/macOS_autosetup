@@ -1,6 +1,7 @@
 # setup.py
 
-from utils import (
+from scripts.python.user_interaction import get_user_confirmation
+from scripts.python.utils import (
     installation_method,
     run_mandatory_installations,
     run_optional_installations,
@@ -8,7 +9,6 @@ from utils import (
     finish_installation,
     clear_terminal
 )
-from user_interaction import get_user_confirmation
 
 
 def main():
@@ -26,7 +26,7 @@ def main():
     run_mandatory_installations()
 
     # Run optional installations
-    run_optional_installations()
+    run_optional_installations(chosen_installation)
 
     # Handle online installation tasks
     run_online_installation(chosen_installation)

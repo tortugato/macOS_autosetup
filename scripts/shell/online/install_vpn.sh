@@ -7,18 +7,14 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Get the path for the script directory
-main_dir=$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")
-
+main_dir=$(dirname "$(dirname "$(dirname "$(dirname "$(realpath "$0")")")")")
 # Universal download function for VPN
 function downloadVPN() {
     local download_url=$1
     local vpn_file=$2
 
-    # Step 1: Download the asset
-    curl -L -o $vpn_file "$download_url"
-
-    # Step 2: Move the asset to the specified directory
-    mv $vpn_file "${main_dir}/config/vpn_and_firewall/$vpn_file"
+    # Download the asset to the vpn_and_firewall directory
+    curl -L -o "${main_dir}/resources/vpn_and_firewall/$vpn_file" "$download_url"
 
 }
 
@@ -65,10 +61,10 @@ function installVpn(){
 
     # Check if the selected VPN file exists
     while true; do
-        if [ ! -e "$main_dir/config/vpn_and_firewall/$vpn_file" ]; then
+        if [ ! -e "$main_dir/resources/vpn_and_firewall/$vpn_file" ]; then
             clear
-            echo -e "${RED}Something went wrong. Not all files required for this setup are in $main_dir/vpn_and_firewall/.${NC}"
-            echo "Please download the vpn file manually and place it in $main_dir/vpn_and_firewall/ as $vpn_file"
+            echo -e "${RED}Something went wrong. Not all files required for this setup are in $main_dir/resources/vpn_and_firewall/.${NC}"
+            echo "Please download the vpn file manually and place it in $main_dir/resources/vpn_and_firewall/ as $vpn_file"
             read -p "Press Enter to retry detecting the file or 'q' to quit: " input
             if [ "$input" == "q" ]; then
                 echo "Exiting installation."
@@ -82,13 +78,13 @@ function installVpn(){
     # Continue with installation based on the selected VPN
     echo -e "\nInstalling $vpn_name ..."
     if [ "$vpn_name" == "ProtonVPN" ]; then
-        hdiutil attach "$main_dir/config/vpn_and_firewall/vpn.dmg"
+        hdiutil attach "$main_dir/resources/vpn_and_firewall/vpn.dmg"
         rsync -a "/Volumes/ProtonVPN/ProtonVPN.app" "/Applications/"
         sleep 5
         hdiutil detach "/Volumes/ProtonVPN/"
         sleep 3
     elif [ "$vpn_name" == "Mullvad VPN" ]; then
-        installer -package "$main_dir/config/vpn_and_firewall/vpn.pkg" -target /
+        installer -package "$main_dir/resources/vpn_and_firewall/vpn.pkg" -target /
     fi
 
 

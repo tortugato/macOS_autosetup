@@ -2,7 +2,7 @@
 
 import os
 
-from config import ENV_VARS
+from scripts.python.config import ENV_VARS
 
 
 def set_environment_variables(section_title):

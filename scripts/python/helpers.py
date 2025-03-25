@@ -2,8 +2,9 @@
 
 import os
 import subprocess
-from environment import set_environment_variables
-from user_interaction import get_user_confirmation
+
+from scripts.python.environment import set_environment_variables
+from scripts.python.user_interaction import get_user_confirmation
 
 
 def run_command(command, user_input=None):
